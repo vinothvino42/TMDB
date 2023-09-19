@@ -19,3 +19,17 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
     }
 }
+
+
+struct SettingListTile: View {
+    var body: some View {
+        HStack {
+            Image(systemName: "house")
+            VStack {
+                Text("Account Sesttings")
+                Text("Download quality storage & more")
+            }
+            Image(systemName: "house")
+        }
+    }
+}
