@@ -19,6 +19,7 @@ protocol Endpoint {
     var method: RequestMethod { get }
     var locale: String { get }
     var region: String { get }
+    var headers: [String: String] { get }
 }
 
 extension Endpoint {
@@ -28,5 +29,12 @@ extension Endpoint {
     
     var region: String {
         return Locale.current.region?.identifier ?? "IN"
+    }
+    
+    var headers: [String: String] {
+        return [
+            "Content-type": "application/json",
+            "Accept": "application/json"
+        ]
     }
 }
