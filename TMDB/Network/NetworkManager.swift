@@ -15,7 +15,8 @@ protocol APIClientProtocol {
 
 final class APIClient: APIClientProtocol {
     static private let scheme = "https"
-    static private let host = "baseURL"
+    static private let host = "api.themoviedb.org"
+    static private let path = "/3/"
     
     let session: URLSession
     
@@ -27,18 +28,23 @@ final class APIClient: APIClientProtocol {
         guard var urlRequest = makeURLRequest(endpoint: endpoint) else {
             throw NetworkError.invalidURL
         }
-        urlRequest.httpBody = try? JSONEncoder().encode(body)
+        if endpoint.method != .get {
+            urlRequest.httpBody = try? JSONEncoder().encode(body)
+        }
         
         do {
             let (data, response) = try await session.data(for: urlRequest)
-            
             guard let response = response as? HTTPURLResponse, response.statusCode >= 200 && response.statusCode < 300 else {
+                print(response)
                 throw NetworkError.invalidURLResponse(url: urlRequest.url)
             }
             
             let decoded: T = try DataParser().parse(data: data)
             return decoded
         } catch {
+            if (error is DecodingError) {
+                throw NetworkError.decodingError
+            }
             throw NetworkError.serverError
         }
     }
@@ -47,7 +53,9 @@ final class APIClient: APIClientProtocol {
         var components = URLComponents()
         components.scheme = APIClient.scheme
         components.host = APIClient.host
-        components.queryItems = endpoint.queryItems
+        components.path = APIClient.path + endpoint.path
+        components.queryItems = [URLQueryItem(name: "api_key", value: "")]
+        components.queryItems?.append(contentsOf: endpoint.queryItems ?? [])
         
         guard let url = components.url else {
             return nil
