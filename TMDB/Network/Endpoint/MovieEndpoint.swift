@@ -8,10 +8,10 @@
 import Foundation
 
 enum MovieEndpoint: Endpoint {
-    case movieDetail(movieId: String)
-    case movieCredits(movieId: String)
-    case addToFavorite(accountId: String, sessionId: String)
-    case addToWatchlist(accountId: String, sessionId: String)
+    case movieDetail(movieId: Int)
+    case movieCredits(movieId: Int)
+    case addToFavorite(accountId: Int, sessionId: SessionID)
+    case addToWatchlist(accountId: Int, sessionId: SessionID)
     case popularMovies
     case topRatedMovies
     case upcomingMovies

@@ -12,7 +12,6 @@ enum AuthEndpoint: Endpoint {
     case verifyRequestToken
     case createSession
     case deleteSession
-    case userDetail(sessionId: String)
     
     var path: String {
         switch self {
@@ -24,21 +23,16 @@ enum AuthEndpoint: Endpoint {
             "authentication/session/new"
         case .deleteSession:
             "authentication/session"
-        case .userDetail:
-            "account"
         }
     }
     
     var queryItems: [URLQueryItem]? {
-        if case let .userDetail(sessionId) = self {
-            return [.init(name: "session_id", value: sessionId)]
-        }
         return nil
     }
     
     var method: RequestMethod {
         switch self {
-        case .requestToken, .userDetail:
+        case .requestToken:
             return .get
         case .verifyRequestToken, .createSession:
             return .post

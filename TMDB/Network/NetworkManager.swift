@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol DataFetcher {
+protocol APIClientProtocol {
     var session: URLSession { get }
-    func executeRequest(with endpoint: Endpoint) async throws -> Data
+    func executeRequest<T: Decodable>(with endpoint: Endpoint, body: [String: String]) async throws -> T
     func makeURLRequest(endpoint: Endpoint) -> URLRequest?
 }
 
-final class APIClient: DataFetcher {
+final class APIClient: APIClientProtocol {
     static private let scheme = "https"
     static private let host = "baseURL"
     
@@ -23,10 +23,11 @@ final class APIClient: DataFetcher {
         self.session = session
     }
     
-    func executeRequest(with endpoint: Endpoint) async throws -> Data {
-        guard let urlRequest = makeURLRequest(endpoint: endpoint) else {
+    func executeRequest<T: Decodable>(with endpoint: Endpoint, body: [String: String] = [:]) async throws -> T {
+        guard var urlRequest = makeURLRequest(endpoint: endpoint) else {
             throw NetworkError.invalidURL
         }
+        urlRequest.httpBody = try? JSONEncoder().encode(body)
         
         do {
             let (data, response) = try await session.data(for: urlRequest)
@@ -35,7 +36,8 @@ final class APIClient: DataFetcher {
                 throw NetworkError.invalidURLResponse(url: urlRequest.url)
             }
             
-            return data
+            let decoded: T = try DataParser().parse(data: data)
+            return decoded
         } catch {
             throw NetworkError.serverError
         }
