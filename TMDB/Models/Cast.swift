@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cast {
+struct Cast: Decodable {
     let id: Int
     let name: String
     let popularity: Double
