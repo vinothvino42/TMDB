@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Factory
 
 struct LoginView: View {
     enum LoginField: Hashable {
@@ -16,8 +17,7 @@ struct LoginView: View {
     @State private var password = ""
     @FocusState private var focusField: LoginField?
     
-    // TODO: DI
-    @ObservedObject var loginViewModel = LoginViewModel(authRepo: AuthRepository())
+    private let loginViewModel = Container.shared.loginViewModel()
     
     var body: some View {
         ZStack {
@@ -57,7 +57,8 @@ struct LoginView: View {
                         } else {
                             focusField = nil
                             print("Sign In button tapped")
-                            loginViewModel.login(username: username, password: password)
+                            loginUser()
+                            
                         }
                     }
             
@@ -70,6 +71,12 @@ struct LoginView: View {
                 }
             }
             .padding(.horizontal)
+        }
+    }
+    
+    private func loginUser() {
+        Task {
+            await loginViewModel.login(username: username, password: password)
         }
     }
 }
