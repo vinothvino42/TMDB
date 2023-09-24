@@ -12,17 +12,22 @@ struct User: Codable {
     let name: String
     let username: String
     let image: String
+    let hash: String
     
     enum RootKeys: String, CodingKey {
-        case id, name, username, image
+        case id, name, username, avatar
     }
     
     enum AvatarCodingKeys: String, CodingKey {
-        case avatar
+        case gravatar, tmdb
+    }
+    
+    enum GravatarCodingKeys: String, CodingKey {
+        case hash
     }
     
     enum TmdbCodingKeys: String, CodingKey {
-        case tmdb
+        case avatarPath
     }
 }
 
@@ -34,8 +39,12 @@ extension User {
         username = try container.decode(String.self, forKey: .username)
         
         // image
-        let avatarContainer = try container.nestedContainer(keyedBy: AvatarCodingKeys.self, forKey: .image)
-        let tmdbContainer = try avatarContainer.nestedContainer(keyedBy: TmdbCodingKeys.self, forKey: .avatar)
-        image = try tmdbContainer.decode(String.self, forKey: .tmdb)
+        let avatarContainer = try container.nestedContainer(keyedBy: AvatarCodingKeys.self, forKey: .avatar)
+        
+        let gravatarContainer = try avatarContainer.nestedContainer(keyedBy: GravatarCodingKeys.self, forKey: .gravatar)
+        hash = try gravatarContainer.decode(String.self, forKey: .hash)
+
+        let tmdbContainer = try avatarContainer.nestedContainer(keyedBy: TmdbCodingKeys.self, forKey: .tmdb)
+        image = try tmdbContainer.decode(String.self, forKey: .avatarPath)
     }
 }
