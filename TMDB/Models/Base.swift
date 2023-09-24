@@ -15,4 +15,18 @@ struct Base: Decodable {
     let expiresAt: String
     let requestToken: RequestToken?
     let sessionId: SessionID?
+    
+    enum CodingKeys: String, CodingKey {
+        case success, expiresAt, requestToken, sessionId
+    }
+}
+
+extension Base {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        success = try container.decode(Bool.self, forKey: .success)
+        expiresAt = try container.decodeIfPresent(String.self, forKey: .expiresAt) ?? ""
+        requestToken = try container.decodeIfPresent(String.self, forKey: .requestToken) ?? nil
+        sessionId = try container.decodeIfPresent(String.self, forKey: .sessionId) ?? nil
+    }
 }

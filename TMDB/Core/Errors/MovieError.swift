@@ -14,7 +14,7 @@ enum MovieError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidMovieId:
-            return "Please check the movie id"
+            return "Movie not found"
         case .unknown:
             return "Something went wrong"
         }

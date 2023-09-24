@@ -28,7 +28,9 @@ enum NetworkError: LocalizedError {
             return "Failed to get data"
         case .invalidURLResponse(let url):
             return "Invalid response from URL: \(String(describing: url))"
-        case .serverError, .unknown:
+        case .serverError:
+            return "The API is undergoing maintenance. Try again later"
+        case .unknown:
             return "Unknown error occured"
         }
     }

@@ -8,46 +8,30 @@
 import Foundation
 
 protocol MovieRepositoryProtocol {
-    func getMovieDetail(movieId: Int) -> Movie
-    func getMovieCast(movieId: Int) -> [Cast]
-    func getPopularMovies() -> [Movie]
-    func getTopRatedMovies() -> [Movie]
-    func getUpcomingMovies() -> [Movie]
-    func getRomanceMovies() -> [Movie]
-    func getActionMovies() -> [Movie]
-    func getThrillerMovies() -> [Movie]
+    func getMovieDetail(movieId: Int) async throws -> Movie
+    func getMovieCast(movieId: Int) async throws -> [Cast]
+    func getMovieList(endpoint: MovieEndpoint) async throws -> [Movie]
 }
 
 class MovieRepository: MovieRepositoryProtocol {
-    func getMovieDetail(movieId: Int) -> Movie {
-        fatalError("getMovieDetail(movieId:) has not been implemented")
+    private let client: APIClient
+    
+    init(client: APIClient) {
+        self.client = client
     }
     
-    func getMovieCast(movieId: Int) -> [Cast] {
-        fatalError("getMovieCast(movieId:) has not been implemented")
+    func getMovieDetail(movieId: Int) async throws -> Movie {
+        let movie: Movie = try await client.executeRequest(with: MovieEndpoint.movieDetail(movieId: movieId))
+        return movie
     }
     
-    func getPopularMovies() -> [Movie] {
-        fatalError("getPopularMovies() has not been implemented")
+    func getMovieCast(movieId: Int) async throws -> [Cast] {
+        let casts: [Cast] = try await client.executeRequest(with: MovieEndpoint.movieCredits(movieId: movieId))
+        return casts
     }
     
-    func getTopRatedMovies() -> [Movie] {
-        fatalError("getTopRatedMovies() has not been implemented")
-    }
-    
-    func getUpcomingMovies() -> [Movie] {
-        fatalError("getUpcomingMovies() has not been implemented")
-    }
-    
-    func getRomanceMovies() -> [Movie] {
-        fatalError("getRomanceMovies() has not been implemented")
-    }
-    
-    func getActionMovies() -> [Movie] {
-        fatalError("getActionMovies() has not been implemented")
-    }
-    
-    func getThrillerMovies() -> [Movie] {
-        fatalError("getThrillerMovies(m) has not been implemented")
+    func getMovieList(endpoint: MovieEndpoint) async throws -> [Movie] {
+        let movies: [Movie] = try await client.executeRequest(with: endpoint)
+        return movies
     }
 }
