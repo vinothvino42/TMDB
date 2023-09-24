@@ -8,11 +8,18 @@
 import Foundation
 
 protocol AccountRepositoryProtocol {
-    func getUserDetail() -> User
+    func getUserDetail(sessionId: SessionID) async throws -> User
 }
 
 class AccountRepository: AccountRepositoryProtocol {
-    func getUserDetail() -> User {
-        fatalError("getUserDetail() has not been implemented")
+    private let client: APIClient
+    
+    init(client: APIClient) {
+        self.client = client
+    }
+    
+    func getUserDetail(sessionId: SessionID) async throws -> User {
+        let user: User = try await client.executeRequest(with: AccountEndpoint.userDetail(sessionId: sessionId))
+        return user
     }
 }

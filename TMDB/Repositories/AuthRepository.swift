@@ -7,32 +7,39 @@
 
 import Foundation
 
-typealias RequestToken = String
-typealias SessionID = String
-
 protocol AuthRepositoryProtocol {
-    func getRequestToken() async throws -> RequestToken
-    func verifyRequestToken(username: String, password: String) async throws -> RequestToken
-    func createSession(requestToken: RequestToken) -> Bool
-    func deleteSession(sessionId: SessionID) -> Bool
+    func getRequestToken() async throws -> RequestToken?
+    func verifyRequestToken(requestToken: RequestToken, username: String, password: String) async throws -> RequestToken?
+    func createSession(requestToken: RequestToken)  async throws -> SessionID?
+    func deleteSession(sessionId: SessionID) async throws -> Bool
 }
 
 class AuthRepository: AuthRepositoryProtocol {
-    func getRequestToken() async throws -> RequestToken {
-        fatalError("getRequestToken() has not been implemented")
+    private let client: APIClient
+    
+    init(client: APIClient) {
+        self.client = client
     }
     
-    func verifyRequestToken(username: String, password: String) async throws -> RequestToken {
-        fatalError("verifyRequestToken(username:password) has not been implemented")
+    func getRequestToken() async throws -> RequestToken? {
+        let base: Base = try await client.executeRequest(with: AuthEndpoint.requestToken)
+        return base.requestToken
     }
     
-    func createSession(requestToken: RequestToken) -> Bool {
-        fatalError("createSession(requestToken:) has not been implemented")
+    func verifyRequestToken(requestToken: RequestToken, username: String, password: String) async throws -> RequestToken? {
+        let data = ["request_token": requestToken, "username": username, "password": password]
+        let base: Base = try await client.executeRequest(with: AuthEndpoint.verifyRequestToken, body: data)
+        return base.requestToken
+    }
+    func createSession(requestToken: RequestToken) async throws -> SessionID? {
+        let data = ["request_token": requestToken]
+        let base: Base = try await client.executeRequest(with: AuthEndpoint.createSession, body: data)
+        return base.sessionId
     }
     
-    func deleteSession(sessionId: SessionID) -> Bool {
-        fatalError("deleteSession(sessionId:) has not been implemented")
+    func deleteSession(sessionId: SessionID) async throws -> Bool {
+        let data = ["session_id": sessionId]
+        let base: Base = try await client.executeRequest(with: AuthEndpoint.deleteSession, body: data)
+        return base.success
     }
-    
-    
 }
