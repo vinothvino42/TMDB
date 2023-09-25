@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol AccountRepositoryProtocol {
+protocol AccountRepository {
     func getUserDetail(sessionId: SessionID) async throws -> User
 }
 
-class AccountRepository: AccountRepositoryProtocol {
+class AccountRepositoryImpl: AccountRepository {
     private let client: APIClient
     
     init(client: APIClient) {
@@ -19,7 +19,11 @@ class AccountRepository: AccountRepositoryProtocol {
     }
     
     func getUserDetail(sessionId: SessionID) async throws -> User {
-        let user: User = try await client.executeRequest(with: AccountEndpoint.userDetail(sessionId: sessionId))
-        return user
+        do {
+            let user: User = try await client.executeRequest(with: AccountEndpoint.userDetail(sessionId: sessionId))
+            return user
+        } catch NetworkError.invalidResponse {
+            throw AuthError.userDetail
+        }
     }
 }

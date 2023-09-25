@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol AuthRepositoryProtocol {
+protocol AuthRepository {
     func getRequestToken() async throws -> RequestToken?
     func verifyRequestToken(requestToken: RequestToken, username: String, password: String) async throws -> RequestToken?
     func createSession(requestToken: RequestToken)  async throws -> SessionID?
     func deleteSession(sessionId: SessionID) async throws -> Bool
 }
 
-class AuthRepository: AuthRepositoryProtocol {
+class AuthRepositoryImpl: AuthRepository {
     private let client: APIClient
     
     init(client: APIClient) {
@@ -22,24 +22,40 @@ class AuthRepository: AuthRepositoryProtocol {
     }
     
     func getRequestToken() async throws -> RequestToken? {
-        let base: Base = try await client.executeRequest(with: AuthEndpoint.requestToken)
-        return base.requestToken
+        do {
+            let base: Base = try await client.executeRequest(with: AuthEndpoint.requestToken)
+            return base.requestToken
+        } catch NetworkError.invalidResponse(let serverError) where serverError.statusCode == 33 {
+            throw AuthError.tokenExpired
+        }
     }
     
     func verifyRequestToken(requestToken: RequestToken, username: String, password: String) async throws -> RequestToken? {
-        let data = ["request_token": requestToken, "username": username, "password": password]
-        let base: Base = try await client.executeRequest(with: AuthEndpoint.verifyRequestToken, body: data)
-        return base.requestToken
+        do {
+            let data = ["request_token": requestToken, "username": username, "password": password]
+            let base: Base = try await client.executeRequest(with: AuthEndpoint.verifyRequestToken, body: data)
+            return base.requestToken
+        } catch NetworkError.invalidResponse(let serverError) where serverError.statusCode == 30 {
+            throw AuthError.invalidUsernamePassword
+        }
     }
     func createSession(requestToken: RequestToken) async throws -> SessionID? {
-        let data = ["request_token": requestToken]
-        let base: Base = try await client.executeRequest(with: AuthEndpoint.createSession, body: data)
-        return base.sessionId
+        do {
+            let data = ["request_token": requestToken]
+            let base: Base = try await client.executeRequest(with: AuthEndpoint.createSession, body: data)
+            return base.sessionId
+        } catch NetworkError.invalidResponse(let serverError) where serverError.statusCode == 33 {
+            throw AuthError.tokenExpired
+        }
     }
     
     func deleteSession(sessionId: SessionID) async throws -> Bool {
-        let data = ["session_id": sessionId]
-        let base: Base = try await client.executeRequest(with: AuthEndpoint.deleteSession, body: data)
-        return base.success
+        do {
+            let data = ["session_id": sessionId]
+            let base: Base = try await client.executeRequest(with: AuthEndpoint.deleteSession, body: data)
+            return base.success
+        } catch NetworkError.invalidResponse(let serverError) where serverError.statusCode == 17 {
+            throw AuthError.sessionDenied
+        }
     }
 }

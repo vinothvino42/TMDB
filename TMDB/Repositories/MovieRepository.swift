@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol MovieRepositoryProtocol {
+protocol MovieRepository {
     func getMovieDetail(movieId: Int) async throws -> Movie
     func getMovieCast(movieId: Int) async throws -> [Cast]
     func getMovieList(endpoint: MovieEndpoint) async throws -> [Movie]
 }
 
-class MovieRepository: MovieRepositoryProtocol {
+class MovieRepositoryImpl: MovieRepository {
     private let client: APIClient
     
     init(client: APIClient) {
@@ -21,17 +21,33 @@ class MovieRepository: MovieRepositoryProtocol {
     }
     
     func getMovieDetail(movieId: Int) async throws -> Movie {
-        let movie: Movie = try await client.executeRequest(with: MovieEndpoint.movieDetail(movieId: movieId))
-        return movie
+        do {
+            let movie: Movie = try await client.executeRequest(with: MovieEndpoint.movieDetail(movieId: movieId))
+            return movie
+        } catch NetworkError.invalidResponse(let serverError) where serverError.statusCode == 34 {
+            throw MovieError.movieNotFound
+        } catch {
+            throw MovieError.unknown
+        }
     }
     
     func getMovieCast(movieId: Int) async throws -> [Cast] {
-        let casts: [Cast] = try await client.executeRequest(with: MovieEndpoint.movieCredits(movieId: movieId))
-        return casts
+        do {
+            let casts: [Cast] = try await client.executeRequest(with: MovieEndpoint.movieCredits(movieId: movieId))
+            return casts
+        } catch NetworkError.invalidResponse(let serverError) where serverError.statusCode == 34 {
+            throw MovieError.movieNotFound
+        } catch {
+            throw MovieError.unknown
+        }
     }
     
     func getMovieList(endpoint: MovieEndpoint) async throws -> [Movie] {
-        let movies: [Movie] = try await client.executeRequest(with: endpoint)
-        return movies
+        do {
+            let movies: [Movie] = try await client.executeRequest(with: endpoint)
+            return movies
+        } catch {
+            throw MovieError.movieList(type: "\(endpoint)")
+        }
     }
 }
