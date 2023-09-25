@@ -12,7 +12,7 @@ enum NetworkError: LocalizedError {
     case badRequest
     case decodingError
     case invalidData
-    case invalidURLResponse(url: URL?)
+    case invalidResponse(serverError: ServerError)
     case serverError
     case unknown
     
@@ -26,8 +26,8 @@ enum NetworkError: LocalizedError {
             return "Failed to parse data"
         case .invalidData:
             return "Failed to get data"
-        case .invalidURLResponse(let url):
-            return "Invalid response from URL: \(String(describing: url))"
+        case .invalidResponse(let serverError):
+            return "Invalid response from URL: \(String(describing: serverError))"
         case .serverError:
             return "The API is undergoing maintenance. Try again later"
         case .unknown:
@@ -35,3 +35,4 @@ enum NetworkError: LocalizedError {
         }
     }
 }
+
