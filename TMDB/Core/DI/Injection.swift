@@ -11,22 +11,22 @@ import Factory
 // MARK: - Injecting Services
 extension Container {
     var apiClient: Factory<APIClient> {
-        Factory(self) { APIClient() }
+        Factory(self) { APIClientImpl() }
     }
 }
 
 // MARK: - Injecting Repositories
 extension Container {
     var authRepository: Factory<AuthRepository> {
-        Factory(self) { AuthRepository(client: self.apiClient()) }
+        Factory(self) { AuthRepositoryImpl(client: self.apiClient()) }
     }
     
     var accountRepository: Factory<AccountRepository> {
-        Factory(self) { AccountRepository(client: self.apiClient()) }
+        Factory(self) { AccountRepositoryImpl(client: self.apiClient()) }
     }
     
     var movieRepository: Factory<MovieRepository> {
-        Factory(self) { MovieRepository(client: self.apiClient()) }
+        Factory(self) { MovieRepositoryImpl(client: self.apiClient()) }
     }
 }
 

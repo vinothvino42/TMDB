@@ -8,13 +8,16 @@
 import Foundation
 
 enum MovieError: LocalizedError {
-    case invalidMovieId
+    case movieNotFound
+    case movieList(type: String)
     case unknown
     
     var errorDescription: String? {
         switch self {
-        case .invalidMovieId:
+        case .movieNotFound:
             return "Movie not found"
+        case .movieList(let type):
+            return "Failed to get movie \(type) list"
         case .unknown:
             return "Something went wrong"
         }

@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum AuthError: LocalizedError {
+enum AuthError: LocalizedError, Equatable {
     case invalidApiKey
     case tokenExpired
     case sessionDenied
-    case userNotFound
+    case userDetail
     case invalidUsernamePassword
     case unknown
     
@@ -23,8 +23,8 @@ enum AuthError: LocalizedError {
             return "Token is expired or invalid"
         case .sessionDenied:
             return "Session denied"
-        case .userNotFound:
-            return "User not found"
+        case .userDetail:
+            return "Failed to get user"
         case .invalidUsernamePassword:
             return "Please check your username and/or password"
         case .unknown:
