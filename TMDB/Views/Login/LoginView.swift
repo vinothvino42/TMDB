@@ -17,7 +17,7 @@ struct LoginView: View {
     @State private var password = ""
     @FocusState private var focusField: LoginField?
     
-    private let loginViewModel = Container.shared.loginViewModel()
+    @StateObject private var loginViewModel = Container.shared.loginViewModel()
     
     var body: some View {
         ZStack {
@@ -49,16 +49,14 @@ struct LoginView: View {
                     }
                     .decoratedField()
                     
-                    SubmitButton(title: "Sign In", isLoading: false) {
+                    SubmitButton(title: "Sign In", isLoading: loginViewModel.isLoading) {
                         if username.isEmpty {
                             focusField = .username
                         } else if password.isEmpty {
                             focusField = .password
                         } else {
                             focusField = nil
-                            print("Sign In button tapped")
                             loginUser()
-                            
                         }
                     }
             

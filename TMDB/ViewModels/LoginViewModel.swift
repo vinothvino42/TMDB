@@ -9,17 +9,21 @@ import Foundation
 import Factory
 
 final class LoginViewModel: ObservableObject {
-    enum State {
+    enum State: Equatable {
         case idle
         case loading
-        case success
-        case error
+        case success(User)
+        case error(AuthError)
     }
     
     @Published private(set) var state: State = .idle
     
     private let authRepository: AuthRepository
     private let accountRepository: AccountRepository
+    
+    var isLoading: Bool {
+        return state == .loading
+    }
     
     init(authRepository: AuthRepository, accountRepository: AccountRepository) {
         self.authRepository = authRepository
@@ -40,11 +44,18 @@ final class LoginViewModel: ObservableObject {
                         print("User name: \(user.name)")
                         print("Gravatar Hash: \(user.hash)")
                         print("TMDB Image: \(user.image)")
+                        state = .success(user)
                     }
                 }
             }
         } catch {
-            state = .error
+            state = .idle
+            print(error)
+//            if let authError = error as? AuthError {
+//                state = .error(AuthError.userDetail)
+//            } else {
+//                print(error)
+//            }
         }
     }
 }
