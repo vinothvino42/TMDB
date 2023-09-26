@@ -16,9 +16,9 @@ struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var showAlert: Bool = false
-    @FocusState private var focusField: LoginField?
-    
     @StateObject private var loginViewModel = Container.shared.loginViewModel()
+    
+    @FocusState private var focusField: LoginField?
     
     var body: some View {
         ZStack {
@@ -70,7 +70,8 @@ struct LoginView: View {
                 }
             }
             .padding(.horizontal)
-            .alert(isPresented: $loginViewModel.showError, message: loginViewModel.loginError?.localizedDescription)
+            .errorAlert(isPresenting: $loginViewModel.showError, error: loginViewModel.loginError)
+//            .preference(key: ErrorStateKey.self, value: ErrorState(error: loginViewModel.loginError))
         }
     }
     
