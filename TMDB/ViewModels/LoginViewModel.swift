@@ -13,16 +13,17 @@ final class LoginViewModel: ObservableObject {
         case idle
         case loading
         case success(User)
-        case error(AuthError)
     }
     
     @Published private(set) var state: State = .idle
+    @Published public var showError: Bool = false
     
+    public var loginError: Error?
     private let authRepository: AuthRepository
     private let accountRepository: AccountRepository
     
-    var isLoading: Bool {
-        return state == .loading
+    public var isLoading: Bool {
+        state == .loading
     }
     
     init(authRepository: AuthRepository, accountRepository: AccountRepository) {
@@ -49,13 +50,9 @@ final class LoginViewModel: ObservableObject {
                 }
             }
         } catch {
+            showError = true
             state = .idle
-            print(error)
-//            if let authError = error as? AuthError {
-//                state = .error(AuthError.userDetail)
-//            } else {
-//                print(error)
-//            }
+            loginError = error
         }
     }
 }

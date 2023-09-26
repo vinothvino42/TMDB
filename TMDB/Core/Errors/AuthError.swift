@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum AuthError: LocalizedError, Equatable {
+enum AuthError: LocalizedError, Equatable, Identifiable {
+    var id: Self { self }
     case invalidApiKey
     case tokenExpired
     case sessionDenied

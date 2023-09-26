@@ -13,8 +13,9 @@ struct LoginView: View {
         case username, password
     }
     
-    @State private var username = ""
-    @State private var password = ""
+    @State private var username: String = ""
+    @State private var password: String = ""
+    @State private var showAlert: Bool = false
     @FocusState private var focusField: LoginField?
     
     @StateObject private var loginViewModel = Container.shared.loginViewModel()
@@ -69,6 +70,7 @@ struct LoginView: View {
                 }
             }
             .padding(.horizontal)
+            .alert(isPresented: $loginViewModel.showError, message: loginViewModel.loginError?.localizedDescription)
         }
     }
     
