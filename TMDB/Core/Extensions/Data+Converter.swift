@@ -7,15 +7,10 @@
 
 import Foundation
 
-extension Data {
-    func toDictionary(options: JSONSerialization.ReadingOptions = []) throws -> [String: Any] {
-        return try to(type: [String: Any].self, options: options)
-    }
-
-    func to<T>(type: T.Type, options: JSONSerialization.ReadingOptions = []) throws -> T {
-        guard let result = try JSONSerialization.jsonObject(with: self, options: options) as? T else {
-            throw CastingError(fromType: type, toType: T.self)
-        }
+extension Encodable {
+    func toJSON(_ encoder: JSONEncoder = JSONEncoder()) throws -> String {
+        let data = try encoder.encode(self)
+        let result = String(decoding: data, as: UTF8.self)
         return result
     }
 }
