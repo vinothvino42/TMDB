@@ -16,6 +16,8 @@ struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var showAlert: Bool = false
+    
+    @EnvironmentObject private var session: SessionManager
     @StateObject private var loginViewModel = Container.shared.loginViewModel()
     
     @FocusState private var focusField: LoginField?
@@ -70,8 +72,15 @@ struct LoginView: View {
                 }
             }
             .padding(.horizontal)
-            .errorAlert(isPresenting: $loginViewModel.showError, error: loginViewModel.loginError)
-//            .preference(key: ErrorStateKey.self, value: ErrorState(error: loginViewModel.loginError))
+            .errorAlert(isPresenting: $loginViewModel.hasError, error: loginViewModel.loginError)
+            .onChange(of: loginViewModel.state) { state in
+                if case let .success(user) = state {
+                    withAnimation {
+                        print("\nUsername: \(user.name)")
+                        session.signIn()
+                    }
+                }
+            }
         }
     }
     
@@ -84,4 +93,6 @@ struct LoginView: View {
 
 #Preview {
     LoginView()
+        .environmentObject(SessionManager())
 }
+

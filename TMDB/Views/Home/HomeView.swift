@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject private var session: SessionManager
+    
     var body: some View {
         NavigationStack {
             List {
@@ -26,5 +28,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(SessionManager())
     }
 }
