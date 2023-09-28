@@ -16,7 +16,7 @@ final class LoginViewModel: ObservableObject {
     }
     
     @Published private(set) var state: State = .idle
-    @Published public var showError: Bool = false
+    @Published public var hasError: Bool = false
     
     public var loginError: Error?
     private let authRepository: AuthRepository
@@ -50,7 +50,7 @@ final class LoginViewModel: ObservableObject {
                 }
             }
         } catch {
-            showError = true
+            hasError = true
             state = .idle
             loginError = error
         }
