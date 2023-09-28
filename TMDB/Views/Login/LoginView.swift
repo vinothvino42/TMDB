@@ -52,17 +52,8 @@ struct LoginView: View {
                     }
                     .decoratedField()
                     
-                    SubmitButton(title: "Sign In", isLoading: loginViewModel.isLoading) {
-                        if username.isEmpty {
-                            focusField = .username
-                        } else if password.isEmpty {
-                            focusField = .password
-                        } else {
-                            focusField = nil
-                            loginUser()
-                        }
-                    }
-            
+                    SubmitButton(title: "Sign In", isLoading: loginViewModel.isLoading, onTap: loginUser)
+                    
                     HStack {
                         Text("Dont have an account?")
                         Link("Sign Up",
@@ -77,7 +68,7 @@ struct LoginView: View {
                 if case let .success(user) = state {
                     withAnimation {
                         print("\nUsername: \(user.name)")
-                        session.signIn()
+                        session.signIn(user: user)
                     }
                 }
             }
@@ -85,8 +76,15 @@ struct LoginView: View {
     }
     
     private func loginUser() {
-        Task {
-            await loginViewModel.login(username: username, password: password)
+        if username.isEmpty {
+            focusField = .username
+        } else if password.isEmpty {
+            focusField = .password
+        } else {
+            focusField = nil
+            Task {
+                await loginViewModel.login(username: username, password: password)
+            }
         }
     }
 }

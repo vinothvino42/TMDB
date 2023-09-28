@@ -7,11 +7,13 @@
 
 import Foundation
 
+enum UserDefaultKeys {
+    static let isOnboarded: String = "isOnboarded"
+    static let isLoggedIn: String = "isLoggedIn"
+    static let user: String = "user"
+}
+
 final class SessionManager: ObservableObject {
-    enum UserDefaultKeys {
-        static let isOnboarded = "isOnboarded"
-        static let isLoggedIn = "isLoggedIn"
-    }
     enum CurrentState {
         case loggedIn
         case loggedOut
@@ -30,13 +32,17 @@ final class SessionManager: ObservableObject {
         }
     }
     
-    func signIn() {
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.isLoggedIn)
-        configureInitialState()
+    func signIn(user: User) {
+        if let encodedUser = try? JSONEncoder().encode(user) {
+            UserDefaults.standard.setValue(encodedUser, forKey: UserDefaultKeys.user)
+            UserDefaults.standard.set(true, forKey: UserDefaultKeys.isLoggedIn)
+            configureInitialState()
+        }
     }
     
     func signOut() {
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isLoggedIn)
+        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.user)
         configureInitialState()
     }
     

@@ -44,6 +44,10 @@
 		D1F1C8462AC5487700895F27 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1C8452AC5487700895F27 /* OnboardView.swift */; };
 		D1F1C8482AC549DB00895F27 /* OnboardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1C8472AC549DB00895F27 /* OnboardInfoView.swift */; };
 		D1F1C84A2AC54ACA00895F27 /* Onboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1C8492AC54ACA00895F27 /* Onboard.swift */; };
+		D1F1C84D2AC56A1F00895F27 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1C84C2AC56A1F00895F27 /* Setting.swift */; };
+		D1F1C84F2AC58EB900895F27 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1C84E2AC58EB900895F27 /* Constants.swift */; };
+		D1F1C8512AC58F6400895F27 /* SettingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1C8502AC58F6400895F27 /* SettingListView.swift */; };
+		D1F1C8532AC58F7B00895F27 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1C8522AC58F7B00895F27 /* FooterView.swift */; };
 		D1F7866A2ABA1644001FD890 /* AuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F786692ABA1644001FD890 /* AuthEndpoint.swift */; };
 		D1F7866C2ABA167E001FD890 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F7866B2ABA167E001FD890 /* Endpoint.swift */; };
 		D1F7866E2ABA1E9F001FD890 /* MovieEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F7866D2ABA1E9F001FD890 /* MovieEndpoint.swift */; };
@@ -87,6 +91,10 @@
 		D1F1C8452AC5487700895F27 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
 		D1F1C8472AC549DB00895F27 /* OnboardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardInfoView.swift; sourceTree = "<group>"; };
 		D1F1C8492AC54ACA00895F27 /* Onboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard.swift; sourceTree = "<group>"; };
+		D1F1C84C2AC56A1F00895F27 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		D1F1C84E2AC58EB900895F27 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D1F1C8502AC58F6400895F27 /* SettingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingListView.swift; sourceTree = "<group>"; };
+		D1F1C8522AC58F7B00895F27 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		D1F786692ABA1644001FD890 /* AuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoint.swift; sourceTree = "<group>"; };
 		D1F7866B2ABA167E001FD890 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		D1F7866D2ABA1E9F001FD890 /* MovieEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndpoint.swift; sourceTree = "<group>"; };
@@ -120,6 +128,7 @@
 				D1014FFC2ABF0439001DB3B2 /* Cast.swift */,
 				D162636D2AC00A0F00413A52 /* Base.swift */,
 				D1F1C8492AC54ACA00895F27 /* Onboard.swift */,
+				D1F1C84C2AC56A1F00895F27 /* Setting.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -149,6 +158,7 @@
 				D16263672ABFEC3800413A52 /* Extensions */,
 				D1014FEE2ABEED3A001DB3B2 /* Components */,
 				D10222E42ABBE9390096C023 /* Modifiers */,
+				D1F1C84E2AC58EB900895F27 /* Constants.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -215,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				D1DA72EE2AB7F9B100A3E9C8 /* SettingsView.swift */,
+				D1F1C8522AC58F7B00895F27 /* FooterView.swift */,
+				D1F1C8502AC58F6400895F27 /* SettingListView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -439,7 +451,9 @@
 				D163739E2AC074FF0077A7F2 /* Injection.swift in Sources */,
 				D162636C2ABFECBF00413A52 /* Data+Converter.swift in Sources */,
 				D1F1C8432AC5412000895F27 /* RootView.swift in Sources */,
+				D1F1C8512AC58F6400895F27 /* SettingListView.swift in Sources */,
 				D152D6B62AB890F70043CD30 /* MovieListView.swift in Sources */,
+				D1F1C8532AC58F7B00895F27 /* FooterView.swift in Sources */,
 				D10222E62ABBE9560096C023 /* DecoratedField.swift in Sources */,
 				D1F1C84A2AC54ACA00895F27 /* Onboard.swift in Sources */,
 				D16373962AC0127B0077A7F2 /* MovieError.swift in Sources */,
@@ -450,9 +464,11 @@
 				D1DA72EF2AB7F9B100A3E9C8 /* SettingsView.swift in Sources */,
 				D1014FF72ABEF23A001DB3B2 /* User.swift in Sources */,
 				D1F7866E2ABA1E9F001FD890 /* MovieEndpoint.swift in Sources */,
+				D1F1C84D2AC56A1F00895F27 /* Setting.swift in Sources */,
 				D1DA72ED2AB7F97A00A3E9C8 /* SearchView.swift in Sources */,
 				D1F1C83E2AC5269900895F27 /* SessionManager.swift in Sources */,
 				D1014FF92ABF02CA001DB3B2 /* MovieRepository.swift in Sources */,
+				D1F1C84F2AC58EB900895F27 /* Constants.swift in Sources */,
 				D1F1C8482AC549DB00895F27 /* OnboardInfoView.swift in Sources */,
 				D1DA72EB2AB7F96D00A3E9C8 /* HomeView.swift in Sources */,
 				D10222E22ABBE4420096C023 /* LoginView.swift in Sources */,

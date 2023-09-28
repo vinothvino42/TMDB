@@ -42,9 +42,6 @@ final class LoginViewModel: ObservableObject {
                     let sessionId = try await authRepository.createSession(requestToken: verifiedToken!)
                     if sessionId != nil {
                         let user = try await accountRepository.getUserDetail(sessionId: sessionId!)
-                        print("User name: \(user.name)")
-                        print("Gravatar Hash: \(user.hash)")
-                        print("TMDB Image: \(user.image)")
                         state = .success(user)
                     }
                 }
