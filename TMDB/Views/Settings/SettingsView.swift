@@ -13,7 +13,7 @@ struct SettingsView: View {
     
     var body: some View {
         VStack(spacing: 6) {
-            AsyncImage(url: URL(string: Constants.imageURL + (user?.image ?? ""))) { image in
+            AsyncImage(url: user?.imageURL) { image in
                 image
                     .resizable()
                     .scaledToFill()

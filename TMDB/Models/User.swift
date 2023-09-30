@@ -13,6 +13,10 @@ struct User: Codable, Equatable {
     let username: String
     let image: String
     
+    var imageURL: URL? {
+        URL(string: Constants.imageURL + image)
+    }
+    
     enum RootKeys: String, CodingKey {
         case id, name, username, avatar
     }
@@ -20,10 +24,6 @@ struct User: Codable, Equatable {
     enum AvatarCodingKeys: String, CodingKey {
         case gravatar, tmdb
     }
-    
-//    enum GravatarCodingKeys: String, CodingKey {
-//        case hash
-//    }
     
     enum TmdbCodingKeys: String, CodingKey {
         case avatarPath

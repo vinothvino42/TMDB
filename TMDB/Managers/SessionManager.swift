@@ -11,6 +11,7 @@ enum UserDefaultKeys {
     static let isOnboarded: String = "isOnboarded"
     static let isLoggedIn: String = "isLoggedIn"
     static let user: String = "user"
+    static let sessionID: String = "sessionID"
 }
 
 final class SessionManager: ObservableObject {
@@ -42,6 +43,7 @@ final class SessionManager: ObservableObject {
     
     func signOut() {
         UserDefaults.standard.set(false, forKey: UserDefaultKeys.isLoggedIn)
+        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.sessionID)
         UserDefaults.standard.removeObject(forKey: UserDefaultKeys.user)
         configureInitialState()
     }
