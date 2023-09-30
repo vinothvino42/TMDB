@@ -9,6 +9,8 @@ import SwiftUI
 import AVKit
 
 struct MovieDetailView: View {
+    let movie: Movie
+    
     var body: some View {
         GeometryReader { proxy in
             VStack(alignment: .leading, spacing: 8) {
@@ -20,7 +22,7 @@ struct MovieDetailView: View {
                 
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Money Heist")
+                        Text(movie.title)
                             .font(.title2)
                             .fontWeight(.medium)
                         Text("2019 - 2h 24m - Tamil")
@@ -42,9 +44,7 @@ struct MovieDetailView: View {
                             .lineLimit(1)
                             .fontWeight(.medium)
                         
-                        Text("""
-                             A criminal mastermind who goes by \"The Professor\" has a plan to pull off the biggest heist in recorded history -- to print billions of euros in the Royal Mint of Spain. To help him carry out the ambitious plan, he recruits eight people with certain abilities and who have nothing to lose
-                             """)
+                        Text(movie.overview)
                         .font(.callout)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.leading)
@@ -54,11 +54,12 @@ struct MovieDetailView: View {
                 }
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailView()
+        MovieDetailView(movie: Movie(id: 1, title: "", overview: "", posterPath: "", video: false))
     }
 }

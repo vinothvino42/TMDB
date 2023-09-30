@@ -6,42 +6,50 @@
 //
 
 import SwiftUI
+import NukeUI
 
 struct MovieListView: View {
+    let title: String
+    let isLoading: Bool
+    let movies: [Movie]?
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Latest Releases")
-                .font(.headline)
-                .fontWeight(.bold)
-            ScrollView(.horizontal) {
-                LazyHStack(spacing: 4) {
-                    ForEach(1...20, id: \.self) { _ in
-                        NavigationLink {
-                            MovieDetailView()
-                        } label: {
-                            AsyncImage(url: URL(string: "https://pbs.twimg.com/media/FGGhymwVIAMJUDd.jpg:large")) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                            } placeholder: {
-                                Color.green
+        if isLoading {
+            Color.orange
+                .frame(minWidth: 300, maxHeight: 200)
+                .overlay(alignment: .center) {
+                    ProgressView()
+                }
+        } else if movies == nil || movies!.isEmpty {
+            EmptyView()
+        } else {
+            VStack(alignment: .leading, spacing: 10) {
+                Text(title + " Movies")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                ScrollView(.horizontal) {
+                    LazyHStack(spacing: 4) {
+                        ForEach(movies!, id: \.self) { movie in
+                            NavigationLink {
+                                MovieDetailView(movie: movie)
+                            } label: {
+                                LazyImage(url: movie.imageURL)
+                                    .frame(width: 100, height: 140)
+                                    .cornerRadius(6)
                             }
-                            .frame(width: 100, height: 140)
-                            .background(.green)
-                            .cornerRadius(6)
                         }
                     }
                 }
+                .scrollIndicators(.hidden)
             }
-            .scrollIndicators(.hidden)
+            .padding(.horizontal)
+            .padding(.bottom, 20)
         }
-        .padding(.horizontal)
-        .padding(.bottom, 20)
     }
 }
 
 struct MovieListView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieListView()
+        MovieListView(title: "Trending", isLoading: false, movies: [])
     }
 }

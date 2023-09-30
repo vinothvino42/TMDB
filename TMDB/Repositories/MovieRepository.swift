@@ -44,8 +44,8 @@ class MovieRepositoryImpl: MovieRepository {
     
     func getMovieList(endpoint: MovieEndpoint) async throws -> [Movie] {
         do {
-            let movies: [Movie] = try await client.executeRequest(with: endpoint)
-            return movies
+            let movieRes: MovieResponse = try await client.executeRequest(with: endpoint)
+            return movieRes.results
         } catch {
             throw MovieError.movieList(type: "\(endpoint)")
         }
