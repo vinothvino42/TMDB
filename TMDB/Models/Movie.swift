@@ -7,16 +7,31 @@
 
 import Foundation
 
-struct Movie: Codable {
+struct MovieResponse: Decodable {
+    let page: Int
+    let results: [Movie]
+}
+
+struct Movie: Decodable, Identifiable, Hashable {
     let id: Int
     let title: String
-    let description: String
-    let image: String
+    let overview: String
+    let posterPath: String
     let video: Bool
     
-    enum CodingKeys: String, CodingKey {
-        case id, title, video
-        case description = "overview"
-        case image = "poster_path"
+    var hasVideo: Bool {
+        video
+    }
+    
+    var imageURL: URL? {
+        URL(string: Constants.posterURL + posterPath)
+    }
+    
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
