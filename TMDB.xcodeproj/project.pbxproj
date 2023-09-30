@@ -22,6 +22,9 @@
 		D119505E2ABD418C00A4EE80 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D119505D2ABD418C00A4EE80 /* AuthRepository.swift */; };
 		D152D6B62AB890F70043CD30 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152D6B52AB890F70043CD30 /* MovieListView.swift */; };
 		D152D6B92AB89F5B0043CD30 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D152D6B82AB89F5B0043CD30 /* MovieDetailView.swift */; };
+		D157AEBB2AC7BB6000C25694 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D157AEBA2AC7BB6000C25694 /* MovieListViewModel.swift */; };
+		D157AEBE2AC8087200C25694 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = D157AEBD2AC8087200C25694 /* Nuke */; };
+		D157AEC02AC8087200C25694 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = D157AEBF2AC8087200C25694 /* NukeUI */; };
 		D16263662ABFEAF300413A52 /* AccountEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16263652ABFEAF300413A52 /* AccountEndpoint.swift */; };
 		D162636A2ABFEC8300413A52 /* CastingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16263692ABFEC8300413A52 /* CastingError.swift */; };
 		D162636C2ABFECBF00413A52 /* Data+Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D162636B2ABFECBF00413A52 /* Data+Converter.swift */; };
@@ -69,6 +72,7 @@
 		D119505D2ABD418C00A4EE80 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		D152D6B52AB890F70043CD30 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
 		D152D6B82AB89F5B0043CD30 /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
+		D157AEBA2AC7BB6000C25694 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		D16263652ABFEAF300413A52 /* AccountEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEndpoint.swift; sourceTree = "<group>"; };
 		D16263692ABFEC8300413A52 /* CastingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastingError.swift; sourceTree = "<group>"; };
 		D162636B2ABFECBF00413A52 /* Data+Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Converter.swift"; sourceTree = "<group>"; };
@@ -105,7 +109,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D157AEC02AC8087200C25694 /* NukeUI in Frameworks */,
 				D16373A62AC083EC0077A7F2 /* Factory in Frameworks */,
+				D157AEBE2AC8087200C25694 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,7 +198,8 @@
 		D119505A2ABD415600A4EE80 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				D119505B2ABD416A00A4EE80 /* LoginViewModel.swift */,
+				D157AEB92AC7BB5000C25694 /* Movies */,
+				D157AEB82AC7BB4100C25694 /* Login */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -236,6 +243,22 @@
 			children = (
 				D152D6B52AB890F70043CD30 /* MovieListView.swift */,
 				D152D6B82AB89F5B0043CD30 /* MovieDetailView.swift */,
+			);
+			path = Movies;
+			sourceTree = "<group>";
+		};
+		D157AEB82AC7BB4100C25694 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D119505B2ABD416A00A4EE80 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		D157AEB92AC7BB5000C25694 /* Movies */ = {
+			isa = PBXGroup;
+			children = (
+				D157AEBA2AC7BB6000C25694 /* MovieListViewModel.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -388,6 +411,8 @@
 			name = TMDB;
 			packageProductDependencies = (
 				D16373A52AC083EC0077A7F2 /* Factory */,
+				D157AEBD2AC8087200C25694 /* Nuke */,
+				D157AEBF2AC8087200C25694 /* NukeUI */,
 			);
 			productName = TMDB;
 			productReference = D1DA72D82AB7F64200A3E9C8 /* TMDB.app */;
@@ -419,6 +444,7 @@
 			mainGroup = D1DA72CF2AB7F64200A3E9C8;
 			packageReferences = (
 				D16373A42AC083EC0077A7F2 /* XCRemoteSwiftPackageReference "Factory" */,
+				D157AEBC2AC8087200C25694 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = D1DA72D92AB7F64200A3E9C8 /* Products */;
 			projectDirPath = "";
@@ -463,6 +489,7 @@
 				D152D6B92AB89F5B0043CD30 /* MovieDetailView.swift in Sources */,
 				D1DA72EF2AB7F9B100A3E9C8 /* SettingsView.swift in Sources */,
 				D1014FF72ABEF23A001DB3B2 /* User.swift in Sources */,
+				D157AEBB2AC7BB6000C25694 /* MovieListViewModel.swift in Sources */,
 				D1F7866E2ABA1E9F001FD890 /* MovieEndpoint.swift in Sources */,
 				D1F1C84D2AC56A1F00895F27 /* Setting.swift in Sources */,
 				D1DA72ED2AB7F97A00A3E9C8 /* SearchView.swift in Sources */,
@@ -689,6 +716,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D157AEBC2AC8087200C25694 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.1.6;
+			};
+		};
 		D16373A42AC083EC0077A7F2 /* XCRemoteSwiftPackageReference "Factory" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmlongco/Factory.git";
@@ -700,6 +735,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D157AEBD2AC8087200C25694 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D157AEBC2AC8087200C25694 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		D157AEBF2AC8087200C25694 /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D157AEBC2AC8087200C25694 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
+		};
 		D16373A52AC083EC0077A7F2 /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D16373A42AC083EC0077A7F2 /* XCRemoteSwiftPackageReference "Factory" */;

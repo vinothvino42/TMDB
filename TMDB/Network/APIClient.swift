@@ -57,6 +57,7 @@ final class APIClientImpl: APIClient {
             return decoded
         } catch {
             if (error is DecodingError) {
+                print(error)
                 throw NetworkError.decodingError
             }
             throw error
@@ -68,7 +69,13 @@ final class APIClientImpl: APIClient {
         components.scheme = APIClientImpl.scheme
         components.host = APIClientImpl.host
         components.path = APIClientImpl.path + endpoint.path
-        components.queryItems = [URLQueryItem(name: "api_key", value: "")]
+        
+        var query = [URLQueryItem(name: "api_key", value: "")]
+        let sessionID: SessionID? = UserDefaults.standard.string(forKey: UserDefaultKeys.sessionID)
+        if sessionID != nil {
+            query.append(URLQueryItem(name: "session_id", value: sessionID))
+        }
+        components.queryItems = query
         components.queryItems?.append(contentsOf: endpoint.queryItems ?? [])
         
         guard let url = components.url else {
