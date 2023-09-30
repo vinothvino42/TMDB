@@ -35,4 +35,28 @@ extension Container {
     var loginViewModel: Factory<LoginViewModel> {
         Factory(self) { LoginViewModel(authRepository: self.authRepository(), accountRepository: self.accountRepository()) }
     }
+    
+    var popularMovieViewModel: Factory<MovieListViewModel> {
+        Factory(self) { MovieListViewModel(movieRepository: self.movieRepository()) }
+    }
+    
+    var topRatedMovieViewModel: Factory<MovieListViewModel> {
+        Factory(self) { MovieListViewModel(movieRepository: self.movieRepository()) }
+    }
+    
+    var upcomingMovieViewModel: Factory<MovieListViewModel> {
+        Factory(self) { MovieListViewModel(movieRepository: self.movieRepository()) }
+    }
+    
+    var romanceMovieViewModel: Factory<MovieListViewModel> {
+        Factory(self) { MovieListViewModel(movieRepository: self.movieRepository()) }
+    }
+    
+    var actionMovieViewModel: Factory<MovieListViewModel> {
+        Factory(self) { MovieListViewModel(movieRepository: self.movieRepository()) }
+    }
+    
+    var thrillerMovieViewModel: Factory<MovieListViewModel> {
+        Factory(self) { MovieListViewModel(movieRepository: self.movieRepository()) }
+    }
 }

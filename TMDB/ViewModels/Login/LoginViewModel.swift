@@ -41,6 +41,7 @@ final class LoginViewModel: ObservableObject {
                 if verifiedToken != nil {
                     let sessionId = try await authRepository.createSession(requestToken: verifiedToken!)
                     if sessionId != nil {
+                        UserDefaults.standard.setValue(sessionId, forKey: UserDefaultKeys.sessionID)
                         let user = try await accountRepository.getUserDetail(sessionId: sessionId!)
                         state = .success(user)
                     }
