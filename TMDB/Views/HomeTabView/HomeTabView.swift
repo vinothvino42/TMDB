@@ -11,11 +11,22 @@ enum ThemeMode: Int, CaseIterable {
     case system
     case lightMode
     case darkMode
+    
+    var description: String {
+        switch self {
+        case .system:
+            "System"
+        case .lightMode:
+            "Light"
+        case .darkMode:
+            "Dark"
+        }
+    }
 }
 
 struct HomeTabView: View {
     @State private var isLoggedIn = false
-    @AppStorage("themeMode") private var themeMode: Int = ThemeMode.allCases.first!.rawValue
+    @AppStorage(UserDefaultKeys.themeMode) private var themeMode: Int = ThemeMode.allCases.first!.rawValue
     @Environment(\.colorScheme) private var colorScheme
     
     private var selectedColorScheme: ColorScheme? {
@@ -33,23 +44,21 @@ struct HomeTabView: View {
     
     var body: some View {
         ZStack {
-            NavigationStack {
-                TabView {
-                    HomeView()
-                        .tabItem {
-                            Label("Home", systemImage: "house")
-                        }
-                    
-                    SearchView()
-                        .tabItem {
-                            Label("Search", systemImage: "magnifyingglass")
-                        }
-                    
-                    SettingsView()
-                        .tabItem {
-                            Label("Settings", systemImage: "gearshape")
-                        }
-                }
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+                
+                SearchView()
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+                
+                SettingsView()
+                    .tabItem {
+                        Label("Settings", systemImage: "gearshape")
+                    }
             }
         }
         .preferredColorScheme(selectedColorScheme)

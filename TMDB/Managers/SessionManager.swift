@@ -12,6 +12,7 @@ enum UserDefaultKeys {
     static let isLoggedIn: String = "isLoggedIn"
     static let user: String = "user"
     static let sessionID: String = "sessionID"
+    static let themeMode: String = "themeMode"
 }
 
 final class SessionManager: ObservableObject {
