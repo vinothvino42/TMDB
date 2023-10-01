@@ -14,10 +14,10 @@ struct Setting: Identifiable {
     
     static func getSettingItems() -> [Setting] {
         [
-            .init(icon: "icon", title: "Theme"),
-            .init(icon: "icon", title: "Follow on Twitter"),
-            .init(icon: "icon", title: "Follow on LinkedIn"),
-            .init(icon: "icon", title: "Logout"),
+            .init(icon: "sun.max", title: "Theme"),
+            .init(icon: "person.badge.plus", title: "Follow on Twitter"),
+            .init(icon: "person.badge.plus", title: "Follow on LinkedIn"),
+            .init(icon: "rectangle.portrait.and.arrow.right", title: "Logout"),
         ]
     }
 }
