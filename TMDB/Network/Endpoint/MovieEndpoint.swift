@@ -10,6 +10,7 @@ import Foundation
 enum MovieEndpoint: Endpoint {
     case movieDetail(movieId: Int)
     case movieCredits(movieId: Int)
+    case searchMovies(query: String)
     case addToFavorite(accountId: Int, sessionId: SessionID)
     case addToWatchlist(accountId: Int, sessionId: SessionID)
     case popularMovies
@@ -25,6 +26,8 @@ enum MovieEndpoint: Endpoint {
             return "movie/\(movieId)"
         case .movieCredits(let movieId):
             return "movie/\(movieId)/credits"
+        case .searchMovies(_):
+            return "search/movie"
         case .addToFavorite(let accountId, _):
             return "account/\(accountId)/favorite"
         case .addToWatchlist(let accountId, _):
@@ -48,6 +51,8 @@ enum MovieEndpoint: Endpoint {
             return [.init(name: "with_genres", value: "28")]
         case .thrillerMovies:
             return [.init(name: "with_genres", value: "53")]
+        case .searchMovies(let query):
+            return [.init(name: "query", value: query.trimmingCharacters(in: .whitespacesAndNewlines))]
         default:
             return nil
         }

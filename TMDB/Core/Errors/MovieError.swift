@@ -10,6 +10,7 @@ import Foundation
 enum MovieError: LocalizedError {
     case movieNotFound
     case movieList(type: String)
+    case searchNotFound(query: String)
     case unknown
     
     var errorDescription: String? {
@@ -18,6 +19,8 @@ enum MovieError: LocalizedError {
             return "Movie not found"
         case .movieList(let type):
             return "Failed to get movie \(type) list"
+        case .searchNotFound(let query):
+            return "Search movies for the \(query) not found"
         case .unknown:
             return "Something went wrong"
         }

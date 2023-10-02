@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import NukeUI
+import Factory
 
 struct SearchView: View {
-    @State private var searchText = ""
+    @StateObject private var searchViewModel = Container.shared.searchMovieViewModel()
     
     let columns = [
         GridItem(.flexible()),
@@ -18,46 +20,26 @@ struct SearchView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                HStack(spacing: 12) {
-                    Image(systemName: "magnifyingglass")
-                    TextField("Search movies", text: $searchText)
-                    Button {
-                        print("Clear button tapped")
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                    .tint(.primary)
-                }
-                .padding(.vertical, 12)
-                .padding(.horizontal, 10)
-                .background(.gray.opacity(0.3))
-                .cornerRadius(8)
-                
-                GeometryReader { proxy in
-                    ScrollView {
+            GeometryReader { proxy in
+                ScrollView {
+                    if searchViewModel.movies.isEmpty {
+                        EmptySearchView(
+                            isNotSearched: searchViewModel.movies.isEmpty,
+                            searchText: searchViewModel.searchText
+                        )
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                    } else if searchViewModel.state == .loading {
+                        MovieListLoaderView()
+                    } else {
                         LazyVGrid(columns: columns, spacing: 4) {
-                            ForEach(0...12, id: \.self) { _ in
-                                NavigationLink {
-//                                    MovieDetailView()
-                                } label: {
-                                    AsyncImage(url: URL(string: "https://pbs.twimg.com/media/FGGhymwVIAMJUDd.jpg:large")) { image in
-                                        image
-                                            .resizable()
-                                            .scaledToFill()
-                                            .clipped()
-                                    } placeholder: {
-                                        Color.green
-                                    }
-                                    .frame(width: proxy.size.width / 3, height: 160)
-                                    .background(.green)
-                                    .cornerRadius(6)
-                                }
+                            ForEach(searchViewModel.movies) { movie in
+                                MovieCard(movie: movie)
                             }
                         }
                     }
-                    .scrollIndicators(.hidden)
                 }
+                .scrollIndicators(.hidden)
+                .searchable(text: $searchViewModel.searchText, prompt: Text("Movies and more"))
             }
             .padding(.horizontal)
             .navigationTitle("Search")

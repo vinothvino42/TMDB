@@ -67,4 +67,8 @@ extension Container {
     var movieCastViewModel: Factory<MovieCastViewModel> {
         Factory(self) { MovieCastViewModel(movieRepository: self.movieRepository()) }
     }
+    
+    var searchMovieViewModel: Factory<SearchViewModel> {
+        Factory(self) { SearchViewModel(movieRepository: self.movieRepository()) }
+    }
 }

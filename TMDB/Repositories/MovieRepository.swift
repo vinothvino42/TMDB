@@ -11,6 +11,7 @@ protocol MovieRepository {
     func getMovieDetail(movieId: Int) async throws -> Movie
     func getMovieCast(movieId: Int) async throws -> [Cast]
     func getMovieList(endpoint: MovieEndpoint) async throws -> [Movie]
+    func searchMovies(query: String) async throws -> [Movie]
 }
 
 class MovieRepositoryImpl: MovieRepository {
@@ -44,10 +45,19 @@ class MovieRepositoryImpl: MovieRepository {
     
     func getMovieList(endpoint: MovieEndpoint) async throws -> [Movie] {
         do {
-            let movieRes: MovieResponse = try await client.executeRequest(with: endpoint)
-            return movieRes.results
+            let movieResponse: MovieResponse = try await client.executeRequest(with: endpoint)
+            return movieResponse.results
         } catch {
             throw MovieError.movieList(type: "\(endpoint)")
+        }
+    }
+    
+    func searchMovies(query: String) async throws -> [Movie] {
+        do {
+            let movieResponse: MovieResponse = try await client.executeRequest(with: MovieEndpoint.searchMovies(query: query))
+            return movieResponse.results
+        } catch {
+            throw MovieError.unknown
         }
     }
 }
