@@ -7,14 +7,18 @@
 
 import Foundation
 
-struct Cast: Decodable {
+struct CastResponse: Decodable, Hashable {
+    let id: Int
+    let cast: [Cast]
+}
+
+struct Cast: Decodable, Hashable {
     let id: Int
     let name: String
     let popularity: Double
-    let image: String
+    let profilePath: String?
     
-    enum CodingKeys: String, CodingKey {
-        case id, name, popularity
-        case image = "profile_path"
+    var profileURL: URL? {
+        URL(string: Constants.imageURL + (profilePath ?? ""))
     }
 }

@@ -33,8 +33,8 @@ class MovieRepositoryImpl: MovieRepository {
     
     func getMovieCast(movieId: Int) async throws -> [Cast] {
         do {
-            let casts: [Cast] = try await client.executeRequest(with: MovieEndpoint.movieCredits(movieId: movieId))
-            return casts
+            let castResponse: CastResponse = try await client.executeRequest(with: MovieEndpoint.movieCredits(movieId: movieId))
+            return castResponse.cast
         } catch NetworkError.invalidResponse(let serverError) where serverError.statusCode == 34 {
             throw MovieError.movieNotFound
         } catch {
