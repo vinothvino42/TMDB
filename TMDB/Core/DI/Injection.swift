@@ -59,4 +59,12 @@ extension Container {
     var thrillerMovieViewModel: Factory<MovieListViewModel> {
         Factory(self) { MovieListViewModel(movieRepository: self.movieRepository()) }
     }
+    
+    var movieDetailViewModel: Factory<MovieDetailViewModel> {
+        Factory(self) { MovieDetailViewModel(movieRepository: self.movieRepository()) }
+    }
+    
+    var movieCastViewModel: Factory<MovieCastViewModel> {
+        Factory(self) { MovieCastViewModel(movieRepository: self.movieRepository()) }
+    }
 }
