@@ -14,7 +14,7 @@ class MovieListViewModel: ObservableObject {
     }
     
     @Published private(set) var state: State = .idle
-    @Published var movies: [Movie]?
+    @Published private(set) var movies: [Movie]?
     
     public var isLoading: Bool {
         state == .loading
