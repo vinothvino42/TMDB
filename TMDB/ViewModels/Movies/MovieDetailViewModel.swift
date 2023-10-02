@@ -1,20 +1,23 @@
 //
-//  MovieListViewModel.swift
+//  MovieDetailViewModel.swift
 //  TMDB
 //
-//  Created by Vinoth Vino on 30/09/23.
+//  Created by Vinoth Vino on 01/10/23.
 //
 
 import Foundation
 
-class MovieListViewModel: ObservableObject {
+class MovieDetailViewModel: ObservableObject {
     enum State {
         case idle
         case loading
     }
     
     @Published private(set) var state: State = .idle
-    @Published var movies: [Movie]?
+    @Published public var hasError: Bool = false
+    @Published var movie: Movie?
+    
+    public var movieError: Error?
     
     public var isLoading: Bool {
         state == .loading
@@ -26,15 +29,17 @@ class MovieListViewModel: ObservableObject {
         self.movieRepository = movieRepository
     }
     
-    @MainActor func fetchMovies(with endpoint: MovieEndpoint) async {
+    @MainActor func fetchMovies(movieId: Int) async {
         state = .loading
         do {
-            let movies = try await movieRepository.getMovieList(endpoint: endpoint)
-            self.movies = movies
+            let movieDetail = try await movieRepository.getMovieDetail(movieId: movieId)
+            self.movie = movieDetail
             state = .idle
         } catch {
-            self.movies = nil
+            hasError = true
+            movieError = error
             state = .idle
         }
     }
 }
+
