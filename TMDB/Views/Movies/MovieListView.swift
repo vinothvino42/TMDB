@@ -14,14 +14,8 @@ struct MovieListView: View {
     let movies: [Movie]?
     
     var body: some View {
-        if isLoading {
-            Color.orange
-                .frame(minWidth: 300, maxHeight: 200)
-                .overlay(alignment: .center) {
-                    ProgressView()
-                }
-        } else if movies == nil || movies!.isEmpty {
-            EmptyView()
+        if movies == nil || movies!.isEmpty {
+            MovieListLoaderView()
         } else {
             VStack(alignment: .leading, spacing: 10) {
                 Text(title + " Movies")
@@ -31,16 +25,28 @@ struct MovieListView: View {
                     LazyHStack(spacing: 4) {
                         ForEach(movies!, id: \.self) { movie in
                             NavigationLink {
-                                MovieDetailView(movie: movie)
+                                MovieDetailView(movieId: movie.id)
                             } label: {
-                                LazyImage(url: movie.imageURL)
-                                    .frame(width: 100, height: 140)
-                                    .cornerRadius(6)
+                                LazyImage(url: movie.posterURL) { state in
+                                    if let image = state.image {
+                                        image
+                                            .resizable()
+                                    } else {
+                                        Color.gray.overlay(alignment: .center) {
+                                            ProgressView()
+                                        }
+                                    }
+                                }
+                                .frame(width: 110, height: 160)
+                                .scaledToFill()
+                                .cornerRadius(6)
+                                .shadow(radius: 4)
                             }
                         }
                     }
                 }
                 .scrollIndicators(.hidden)
+                .scrollDisabled(movies == nil || movies!.isEmpty)
             }
             .padding(.horizontal)
             .padding(.bottom, 20)

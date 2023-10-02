@@ -64,7 +64,7 @@ struct LoginView: View {
             }
             .padding(.horizontal)
             .errorAlert(isPresenting: $loginViewModel.hasError, error: loginViewModel.loginError)
-            .onChange(of: loginViewModel.state) { state in
+            .onChange(of: loginViewModel.state) { _, state in
                 if case let .success(user) = state {
                     withAnimation {
                         print("\nUsername: \(user.name)")
