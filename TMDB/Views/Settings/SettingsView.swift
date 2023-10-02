@@ -43,6 +43,7 @@ struct SettingsView: View {
                     FooterView()
                 }
             }
+            .background(Color("Background"))
             .navigationTitle("Settings")
             .navigationDestination(isPresented: $isThemeSelected) {
                 ThemeView()

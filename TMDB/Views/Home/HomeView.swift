@@ -29,9 +29,12 @@ struct HomeView: View {
                     MovieListView(title: "Action", isLoading: actionMoviesViewModel.isLoading, movies: actionMoviesViewModel.movies)
                     MovieListView(title: "Thriller", isLoading: thrillerMoviesViewModel.isLoading, movies: thrillerMoviesViewModel.movies)
                 }
+                .scrollIndicators(.hidden)
+                .listRowBackground(Color("Background"))
                 .listRowSeparator(.hidden)
                 .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
+            .background(Color("Background"))
             .listStyle(.plain)
             .navigationTitle("Movies")
         }

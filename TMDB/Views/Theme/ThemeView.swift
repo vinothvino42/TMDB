@@ -20,6 +20,7 @@ struct ThemeView: View {
             }
             .pickerStyle(.inline)
         }
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             let selectedScheme = UserDefaults.standard.integer(forKey: UserDefaultKeys.themeMode)
             currentScheme = ThemeMode(rawValue: selectedScheme) ?? ThemeMode.system

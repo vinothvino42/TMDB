@@ -26,22 +26,7 @@ enum ThemeMode: Int, CaseIterable {
 
 struct HomeTabView: View {
     @State private var isLoggedIn = false
-    @AppStorage(UserDefaultKeys.themeMode) private var themeMode: Int = ThemeMode.allCases.first!.rawValue
-    @Environment(\.colorScheme) private var colorScheme
-    
-    private var selectedColorScheme: ColorScheme? {
-        guard let themeMode = ThemeMode(rawValue: themeMode) else { return nil }
-        
-        switch themeMode {
-        case .lightMode:
-            return .light
-        case .darkMode:
-            return .dark
-        default:
-            return nil
-        }
-    }
-    
+
     var body: some View {
         ZStack {
             TabView {
@@ -61,7 +46,6 @@ struct HomeTabView: View {
                     }
             }
         }
-        .preferredColorScheme(selectedColorScheme)
     }
 }
 

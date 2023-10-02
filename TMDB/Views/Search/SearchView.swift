@@ -42,6 +42,7 @@ struct SearchView: View {
                 .searchable(text: $searchViewModel.searchText, prompt: Text("Movies and more"))
             }
             .padding(.horizontal)
+            .background(Color("Background"))
             .navigationTitle("Search")
         }
     }
