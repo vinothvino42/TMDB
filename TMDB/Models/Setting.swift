@@ -14,6 +14,8 @@ struct Setting: Identifiable {
     
     static func getSettingItems() -> [Setting] {
         [
+            .init(icon: "heart", title: "Favorite Movies"),
+            .init(icon: "popcorn", title: "Watchlist Movies"),
             .init(icon: "sun.max", title: "Theme"),
             .init(icon: "person.badge.plus", title: "Follow on Twitter"),
             .init(icon: "person.badge.plus", title: "Follow on LinkedIn"),

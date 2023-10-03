@@ -35,6 +35,9 @@
 		D16373982AC0133B0077A7F2 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16373972AC0133B0077A7F2 /* AuthError.swift */; };
 		D163739E2AC074FF0077A7F2 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D163739D2AC074FF0077A7F2 /* Injection.swift */; };
 		D16373A62AC083EC0077A7F2 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = D16373A52AC083EC0077A7F2 /* Factory */; };
+		D17878882ACC577800BED74C /* FavoriteMoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17878872ACC577800BED74C /* FavoriteMoviesView.swift */; };
+		D178788A2ACC5EF000BED74C /* MovieListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17878892ACC5EF000BED74C /* MovieListItem.swift */; };
+		D178788C2ACC5FCE00BED74C /* WatchlistMoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D178788B2ACC5FCE00BED74C /* WatchlistMoviesView.swift */; };
 		D17D756D2AC2894600B65E5A /* Alert+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17D756C2AC2894600B65E5A /* Alert+Default.swift */; };
 		D1A9004D2AC1E0890077B4D8 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A9004C2AC1E0890077B4D8 /* ServerError.swift */; };
 		D1DA72DC2AB7F64200A3E9C8 /* TMDBApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DA72DB2AB7F64200A3E9C8 /* TMDBApp.swift */; };
@@ -92,6 +95,9 @@
 		D16373952AC0127B0077A7F2 /* MovieError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieError.swift; sourceTree = "<group>"; };
 		D16373972AC0133B0077A7F2 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		D163739D2AC074FF0077A7F2 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
+		D17878872ACC577800BED74C /* FavoriteMoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMoviesView.swift; sourceTree = "<group>"; };
+		D17878892ACC5EF000BED74C /* MovieListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListItem.swift; sourceTree = "<group>"; };
+		D178788B2ACC5FCE00BED74C /* WatchlistMoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistMoviesView.swift; sourceTree = "<group>"; };
 		D17D756C2AC2894600B65E5A /* Alert+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Default.swift"; sourceTree = "<group>"; };
 		D1A9004C2AC1E0890077B4D8 /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
 		D1DA72D82AB7F64200A3E9C8 /* TMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,6 +276,9 @@
 				D152D6B82AB89F5B0043CD30 /* MovieDetailView.swift */,
 				D1E45FFE2ACAA4C8008F8F00 /* MovieCastView.swift */,
 				D1E460062ACB0AB3008F8F00 /* MovieCard.swift */,
+				D17878872ACC577800BED74C /* FavoriteMoviesView.swift */,
+				D17878892ACC5EF000BED74C /* MovieListItem.swift */,
+				D178788B2ACC5FCE00BED74C /* WatchlistMoviesView.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -528,6 +537,7 @@
 			files = (
 				D10D59932ABA955E000BAE6E /* APIClient.swift in Sources */,
 				D1014FF22ABEED61001DB3B2 /* SubmitButton.swift in Sources */,
+				D178788C2ACC5FCE00BED74C /* WatchlistMoviesView.swift in Sources */,
 				D163739E2AC074FF0077A7F2 /* Injection.swift in Sources */,
 				D162636C2ABFECBF00413A52 /* Data+Converter.swift in Sources */,
 				D1F1C8432AC5412000895F27 /* RootView.swift in Sources */,
@@ -570,8 +580,10 @@
 				D1E460072ACB0AB3008F8F00 /* MovieCard.swift in Sources */,
 				D162636A2ABFEC8300413A52 /* CastingError.swift in Sources */,
 				D1F1C8462AC5487700895F27 /* OnboardView.swift in Sources */,
+				D17878882ACC577800BED74C /* FavoriteMoviesView.swift in Sources */,
 				D119505E2ABD418C00A4EE80 /* AuthRepository.swift in Sources */,
 				D10D59962ABA9E1D000BAE6E /* DataParser.swift in Sources */,
+				D178788A2ACC5EF000BED74C /* MovieListItem.swift in Sources */,
 				D1E460092ACB0B5A008F8F00 /* RatingView.swift in Sources */,
 				D10D59912ABA930E000BAE6E /* NetworkError.swift in Sources */,
 				D1014FFB2ABF0314001DB3B2 /* Movie.swift in Sources */,

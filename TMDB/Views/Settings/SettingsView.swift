@@ -12,6 +12,8 @@ struct SettingsView: View {
     @Environment(\.openURL) private var openURL
     @State private var user: User?
     @State private var isThemeSelected = false
+    @State private var isWatchlistSelected = false
+    @State private var isFavoriteSelected = false
     
     var body: some View {
         NavigationStack {
@@ -48,6 +50,12 @@ struct SettingsView: View {
             .navigationDestination(isPresented: $isThemeSelected) {
                 ThemeView()
             }
+            .navigationDestination(isPresented: $isWatchlistSelected) {
+                WatchlistMoviesView()
+            }
+            .navigationDestination(isPresented: $isFavoriteSelected) {
+                FavoriteMoviesView()
+            }
         }
         .onAppear {
             if let savedUser = UserDefaults.standard.object(forKey: UserDefaultKeys.user) as? Data {
@@ -60,11 +68,15 @@ struct SettingsView: View {
     private func settingItemTapped(index: Int) {
         switch index {
         case 0:
-            isThemeSelected = true
+            isFavoriteSelected = true
         case 1:
+            isWatchlistSelected = true
+        case 2:
+            isThemeSelected = true
+        case 3:
             print("Twitter")
             openURL(URL(string: "https://www.twitter.com/vinothvino42")!)
-        case 2:
+        case 4:
             openURL(URL(string: "https://www.linkedin.com/in/vinothvino42")!)
         default:
             session.signOut()
