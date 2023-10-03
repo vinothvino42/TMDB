@@ -16,7 +16,7 @@ struct CastView: View {
     var body: some View {
         ZStack {
             if castViewModel.person == nil {
-                ContentUnavailableView("Cast Not Found", image: "person")
+                ContentUnavailableView("Cast Not Found", systemImage: "person")
             } else {
                 let person = castViewModel.person!
                 

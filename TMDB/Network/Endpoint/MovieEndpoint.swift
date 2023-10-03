@@ -8,7 +8,6 @@
 import Foundation
 
 enum MovieEndpoint: Endpoint {
-    case creditDetail(creditId: Int)
     case movieDetail(movieId: Int)
     case movieCredits(movieId: Int)
     case searchMovies(query: String)
@@ -25,8 +24,6 @@ enum MovieEndpoint: Endpoint {
     
     var path: String {
         switch self {
-        case .creditDetail(let creditId):
-            return "credit/\(creditId)"
         case .movieDetail(let movieId):
             return "movie/\(movieId)"
         case .movieCredits(let movieId):

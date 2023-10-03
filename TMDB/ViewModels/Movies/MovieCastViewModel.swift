@@ -29,7 +29,7 @@ class MovieCastViewModel: ObservableObject {
         self.movieRepository = movieRepository
     }
     
-    @MainActor func fetchMovies(movieId: Int) async {
+    @MainActor func fetchMovieCasts(movieId: Int) async {
         state = .loading
         do {
             let casts = try await movieRepository.getMovieCast(movieId: movieId)
