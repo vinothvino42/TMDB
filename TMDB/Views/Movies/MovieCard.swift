@@ -12,9 +12,7 @@ struct MovieCard: View {
     let movie: Movie
     
     var body: some View {
-        NavigationLink {
-            MovieDetailView(movieId: movie.id)
-        } label: {
+        NavigationLink(value: movie) {
             LazyImage(url: movie.posterURL) { state in
                 if let image = state.image {
                     image

@@ -37,6 +37,9 @@ struct HomeView: View {
             .background(Color("Background"))
             .listStyle(.plain)
             .navigationTitle("Movies")
+            .navigationDestination(for: Movie.self) { movie in
+                MovieDetailView(movieId: movie.id)
+            }
         }
         .onAppear(perform: fetchAllMovieList)
     }

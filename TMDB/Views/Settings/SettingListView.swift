@@ -22,7 +22,7 @@ struct SettingListView: View {
                         Image(systemName: "chevron.right")
                             .foregroundStyle(.secondary)
                     }
-                    .padding([.vertical, .horizontal], 12)
+                    .padding([.vertical, .horizontal], 16)
                     .contentShape(Rectangle())
                     
                     Divider()

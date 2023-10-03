@@ -74,6 +74,9 @@ struct MovieDetailView: View {
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     .navigationBarTitleDisplayMode(.inline)
+                    .navigationDestination(for: Cast.self) { cast in
+                        CastView(creditId: cast.creditId)
+                    }
                 }
             }
         }
@@ -88,7 +91,7 @@ struct MovieDetailView: View {
     }
     
     private func fetchMovieCasts() async {
-        await movieCastViewModel.fetchMovies(movieId: movieId)
+        await movieCastViewModel.fetchMovieCasts(movieId: movieId)
     }
 }
 

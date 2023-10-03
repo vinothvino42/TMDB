@@ -26,12 +26,7 @@ struct FavoriteMoviesView: View {
                     ContentUnavailableView("No Favorite Movies", systemImage: "popcorn", description: Text("Browse most popular and trending movies"))
                 } else {
                     List(favoriteListViewModel.movies!) { movie in
-                        NavigationLink {
-                            MovieDetailView(movieId: movie.id)
-                        } label: {
-                            MovieListItem(movie: movie)
-                        }
-                        .listRowBackground(Color("Background"))
+                        MovieListItem(movie: movie)
                     }
                     .background(Color("Background"))
                     .listStyle(.plain)

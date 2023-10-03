@@ -29,12 +29,7 @@ struct WatchlistMoviesView: View {
                     ContentUnavailableView("No Watchlist Movies", systemImage: "popcorn", description: Text("Browse most popular and trending movies"))
                 } else {
                     List(watchlistViewModel.movies!) { movie in
-                        NavigationLink {
-                            MovieDetailView(movieId: movie.id)
-                        } label: {
-                            MovieListItem(movie: movie)
-                        }
-                        .listRowBackground(Color("Background"))
+                        MovieListItem(movie: movie)
                     }
                     .background(Color("Background"))
                     .listStyle(.plain)

@@ -22,9 +22,7 @@ struct MovieCastView: View {
                 ScrollView(.horizontal) {
                     LazyHStack(spacing: 4) {
                         ForEach(casts!, id: \.self) { cast in
-                            NavigationLink {
-                                CastView(creditId: cast.creditId)
-                            } label: {
+                            NavigationLink(value: cast) {
                                 LazyImage(url: cast.profileURL) { state in
                                     if let image = state.image {
                                         image
@@ -40,7 +38,6 @@ struct MovieCastView: View {
                                 .cornerRadius(6)
                                 .shadow(radius: 4)
                             }
-
                         }
                     }
                 }

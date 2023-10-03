@@ -44,6 +44,9 @@ struct SearchView: View {
             .padding(.horizontal)
             .background(Color("Background"))
             .navigationTitle("Search")
+            .navigationDestination(for: Movie.self) { movie in
+                MovieDetailView(movieId: movie.id)
+            }
         }
     }
 }

@@ -56,6 +56,9 @@ struct SettingsView: View {
             .navigationDestination(isPresented: $isFavoriteSelected) {
                 FavoriteMoviesView()
             }
+            .navigationDestination(for: Movie.self) { movie in
+                MovieDetailView(movieId: movie.id)
+            }
         }
         .onAppear {
             if let savedUser = UserDefaults.standard.object(forKey: UserDefaultKeys.user) as? Data {
