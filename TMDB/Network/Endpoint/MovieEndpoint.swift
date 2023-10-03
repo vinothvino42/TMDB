@@ -8,9 +8,12 @@
 import Foundation
 
 enum MovieEndpoint: Endpoint {
+    case creditDetail(creditId: Int)
     case movieDetail(movieId: Int)
     case movieCredits(movieId: Int)
     case searchMovies(query: String)
+    case watchlistMovies(accountId: Int)
+    case favoriteMovies(accountId: Int)
     case addToFavorite(accountId: Int, sessionId: SessionID)
     case addToWatchlist(accountId: Int, sessionId: SessionID)
     case popularMovies
@@ -22,12 +25,18 @@ enum MovieEndpoint: Endpoint {
     
     var path: String {
         switch self {
+        case .creditDetail(let creditId):
+            return "credit/\(creditId)"
         case .movieDetail(let movieId):
             return "movie/\(movieId)"
         case .movieCredits(let movieId):
             return "movie/\(movieId)/credits"
         case .searchMovies(_):
             return "search/movie"
+        case .watchlistMovies(let accountId):
+            return "account/\(accountId)/watchlist/movies"
+        case .favoriteMovies(let accountId):
+            return "account/\(accountId)/favorite/movies"
         case .addToFavorite(let accountId, _):
             return "account/\(accountId)/favorite"
         case .addToWatchlist(let accountId, _):
