@@ -22,20 +22,25 @@ struct MovieCastView: View {
                 ScrollView(.horizontal) {
                     LazyHStack(spacing: 4) {
                         ForEach(casts!, id: \.self) { cast in
-                            LazyImage(url: cast.profileURL) { state in
-                                if let image = state.image {
-                                    image
-                                        .resizable()
-                                } else {
-                                    Color.gray.overlay(alignment: .center) {
-                                        ProgressView()
+                            NavigationLink {
+                                CastView(creditId: cast.creditId)
+                            } label: {
+                                LazyImage(url: cast.profileURL) { state in
+                                    if let image = state.image {
+                                        image
+                                            .resizable()
+                                    } else {
+                                        Color.gray.overlay(alignment: .center) {
+                                            ProgressView()
+                                        }
                                     }
                                 }
+                                .frame(width: 110, height: 160)
+                                .scaledToFill()
+                                .cornerRadius(6)
+                                .shadow(radius: 4)
                             }
-                            .frame(width: 110, height: 160)
-                            .scaledToFill()
-                            .cornerRadius(6)
-                            .shadow(radius: 4)
+
                         }
                     }
                 }

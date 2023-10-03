@@ -23,7 +23,7 @@ class CastRepositoryImpl: CastRepository {
             let castResponse: CastResponse = try await client.executeRequest(with: CastEndpoint.castDetail(creditId: creditId))
             return castResponse.person
         } catch {
-            throw MovieError.castNotFound
+            throw CastError.castNotFound
         }
     }
 }
