@@ -28,6 +28,10 @@ extension Container {
     var movieRepository: Factory<MovieRepository> {
         Factory(self) { MovieRepositoryImpl(client: self.apiClient()) }
     }
+    
+    var castRepository: Factory<CastRepository> {
+        Factory(self) { CastRepositoryImpl(client: self.apiClient()) }
+    }
 }
 
 // MARK: - Injecting ViewModels
@@ -78,5 +82,9 @@ extension Container {
     
     var searchMovieViewModel: Factory<SearchViewModel> {
         Factory(self) { SearchViewModel(movieRepository: self.movieRepository()) }
+    }
+    
+    var castViewModel: Factory<CastViewModel> {
+        Factory(self) { CastViewModel(castRepository: self.castRepository()) }
     }
 }
