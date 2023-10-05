@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+enum ThemeMode: Int, CaseIterable {
+    case system
+    case lightMode
+    case darkMode
+    
+    var description: String {
+        switch self {
+        case .system:
+            "System"
+        case .lightMode:
+            "Light"
+        case .darkMode:
+            "Dark"
+        }
+    }
+}
+
 struct RootView: View {
     @StateObject private var session = SessionManager()
     @AppStorage(UserDefaultKeys.themeMode) private var themeMode: Int = ThemeMode.allCases.first!.rawValue
