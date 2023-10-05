@@ -8,9 +8,6 @@
 import SwiftUI
 import Factory
 
-import SwiftUI
-import Factory
-
 struct WatchlistMoviesView: View {
     @Environment(\.user) var user: User
     @StateObject private var watchlistViewModel = Container.shared.watchlistViewModel()
@@ -27,6 +24,8 @@ struct WatchlistMoviesView: View {
                 }
             }
         }
+        .navigationTitle("Watchlist")
+        .navigationBarTitleDisplayMode(.inline)
         .task {
             await watchlistViewModel.fetchMovies(with: .watchlistMovies(accountId: user.id))
         }

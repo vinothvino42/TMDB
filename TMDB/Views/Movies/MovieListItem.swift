@@ -32,11 +32,11 @@ struct MovieListItem: View {
                 
                 VStack(alignment: .leading) {
                     Text(movie.title)
-                        .font(.title3)
+                        .font(.subheadline)
                     
                     Text(movie.overview)
-                        .font(.footnote)
-                        .lineLimit(2)
+                        .font(.caption)
+                        .lineLimit(3)
                 }
             }
         }

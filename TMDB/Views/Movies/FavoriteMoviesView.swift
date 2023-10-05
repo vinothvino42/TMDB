@@ -24,6 +24,8 @@ struct FavoriteMoviesView: View {
                 }
             }
         }
+        .navigationTitle("Favorites")
+        .navigationBarTitleDisplayMode(.inline)
         .task {
             await favoriteListViewModel.fetchMovies(with: .favoriteMovies(accountId: user.id))
         }
