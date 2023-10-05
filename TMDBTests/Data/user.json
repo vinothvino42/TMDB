@@ -1,0 +1,16 @@
+{
+    "avatar": {
+        "gravatar": {
+            "hash": "asdf1234asdf"
+        },
+        "tmdb": {
+            "avatar_path": "/asdfurl.png"
+        }
+    },
+    "id": 123,
+    "iso_639_1": "en",
+    "iso_3166_1": "IN",
+    "name": "Vinoth Vino",
+    "include_adult": false,
+    "username": "vinothvino42"
+}
