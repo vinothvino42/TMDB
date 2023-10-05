@@ -19,6 +19,7 @@ struct Setting: Identifiable {
             .init(icon: "sun.max", title: "Theme"),
             .init(icon: "person.badge.plus", title: "Follow on Twitter"),
             .init(icon: "person.badge.plus", title: "Follow on LinkedIn"),
+            .init(icon: "questionmark.circle", title: "About"),
             .init(icon: "rectangle.portrait.and.arrow.right", title: "Logout"),
         ]
     }

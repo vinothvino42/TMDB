@@ -14,6 +14,7 @@ struct SettingsView: View {
     @State private var isThemeSelected = false
     @State private var isWatchlistSelected = false
     @State private var isFavoriteSelected = false
+    @State private var isAboutSelected = false
     
     var body: some View {
         NavigationStack {
@@ -56,6 +57,9 @@ struct SettingsView: View {
             .navigationDestination(isPresented: $isThemeSelected) {
                 ThemeView()
             }
+            .navigationDestination(isPresented: $isAboutSelected) {
+                AboutView()
+            }
         }
     }
     
@@ -71,6 +75,8 @@ struct SettingsView: View {
             openURL(URL(string: "https://www.twitter.com/vinothvino42")!)
         case 4:
             openURL(URL(string: "https://www.linkedin.com/in/vinothvino42")!)
+        case 5:
+            isAboutSelected = true
         default:
             session.signOut()
         }
