@@ -7,24 +7,9 @@
 
 import SwiftUI
 
-enum ThemeMode: Int, CaseIterable {
-    case system
-    case lightMode
-    case darkMode
-    
-    var description: String {
-        switch self {
-        case .system:
-            "System"
-        case .lightMode:
-            "Light"
-        case .darkMode:
-            "Dark"
-        }
-    }
-}
-
 struct HomeTabView: View {
+    @State private var user: User = User()
+    
     var body: some View {
         TabView {
             HomeView()
@@ -41,6 +26,12 @@ struct HomeTabView: View {
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
                 }
+        }
+        .environment(\.user, user)
+        .onAppear {
+            if let savedUser = UserDefaults.standard.object(forKey: UserDefaultKeys.user) as? Data, let user: User = try? DataParser().parse(data: savedUser) {
+                self.user = user
+            }
         }
     }
 }

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject private var session: SessionManager
+    @Environment(\.user) var user: User
     @Environment(\.openURL) private var openURL
-    @State private var user: User?
     @State private var isThemeSelected = false
     @State private var isWatchlistSelected = false
     @State private var isFavoriteSelected = false
@@ -19,7 +19,7 @@ struct SettingsView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 4) {
-                    AsyncImage(url: user?.imageURL) { image in
+                    AsyncImage(url: user.imageURL) { image in
                         image
                             .resizable()
                             .scaledToFill()
@@ -32,11 +32,11 @@ struct SettingsView: View {
                     .cornerRadius(.infinity)
                     .padding(.bottom, 6)
                     
-                    Text(user?.name ?? "Not Found")
+                    Text(user.name)
                         .font(.title2)
                         .fontWeight(.bold)
                     
-                    Text(user?.username ?? "Not Found")
+                    Text(user.username)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                     
@@ -47,23 +47,14 @@ struct SettingsView: View {
             }
             .background(Color("Background"))
             .navigationTitle("Settings")
-            .navigationDestination(isPresented: $isThemeSelected) {
-                ThemeView()
+            .navigationDestination(isPresented: $isFavoriteSelected) {
+                FavoriteMoviesView()
             }
             .navigationDestination(isPresented: $isWatchlistSelected) {
                 WatchlistMoviesView()
             }
-            .navigationDestination(isPresented: $isFavoriteSelected) {
-                FavoriteMoviesView()
-            }
-            .navigationDestination(for: Movie.self) { movie in
-                MovieDetailView(movieId: movie.id)
-            }
-        }
-        .onAppear {
-            if let savedUser = UserDefaults.standard.object(forKey: UserDefaultKeys.user) as? Data {
-                let user: User? = try? DataParser().parse(data: savedUser)
-                self.user = user
+            .navigationDestination(isPresented: $isThemeSelected) {
+                ThemeView()
             }
         }
     }
@@ -77,7 +68,6 @@ struct SettingsView: View {
         case 2:
             isThemeSelected = true
         case 3:
-            print("Twitter")
             openURL(URL(string: "https://www.twitter.com/vinothvino42")!)
         case 4:
             openURL(URL(string: "https://www.linkedin.com/in/vinothvino42")!)

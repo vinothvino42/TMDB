@@ -5,13 +5,31 @@
 //  Created by Vinoth Vino on 23/09/23.
 //
 
-import Foundation
+import SwiftUI
+
+struct UserKey: EnvironmentKey {
+    static let defaultValue: User = User()
+}
+
+extension EnvironmentValues {
+    var user: User {
+        get { self[UserKey.self] }
+        set { self[UserKey.self] = newValue }
+    }
+}
 
 struct User: Codable, Equatable {
     let id: Int
     let name: String
     let username: String
     let image: String
+    
+    init(id: Int, name: String, username: String, image: String) {
+        self.id = id
+        self.name = name
+        self.username = username
+        self.image = image
+    }
     
     var imageURL: URL? {
         URL(string: Constants.imageURL + image)
@@ -27,6 +45,13 @@ struct User: Codable, Equatable {
     
     enum TmdbCodingKeys: String, CodingKey {
         case avatarPath
+    }
+}
+
+// Convenience init for creating a empty user
+extension User {
+    init() {
+        self.init(id: 0, name: "", username: "", image: "")
     }
 }
 

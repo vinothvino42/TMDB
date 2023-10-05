@@ -9,39 +9,40 @@ import SwiftUI
 import Factory
 
 struct FavoriteMoviesView: View {
+    @Environment(\.user) var user: User
     @StateObject private var favoriteListViewModel = Container.shared.favoriteViewModel()
     
     var body: some View {
         ZStack {
             if favoriteListViewModel.isLoading {
-                HStack(spacing: 8) {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                    Text("Loading")
-                }
-                .tint(.black.opacity(0.7))
-                .foregroundStyle(.black.opacity(0.7))
+                ProgressLoader()
             } else {
                 if favoriteListViewModel.movies == nil {
                     ContentUnavailableView("No Favorite Movies", systemImage: "popcorn", description: Text("Browse most popular and trending movies"))
                 } else {
-                    List(favoriteListViewModel.movies!) { movie in
-                        MovieListItem(movie: movie)
-                    }
-                    .background(Color("Background"))
-                    .listStyle(.plain)
-                    .navigationBarTitleDisplayMode(.inline)
+                    MovieListView(movies: favoriteListViewModel.movies!)
                 }
             }
         }
         .task {
-            if let savedUser = UserDefaults.standard.object(forKey: UserDefaultKeys.user) as? Data, let user: User = try? DataParser().parse(data: savedUser) {
-                await favoriteListViewModel.fetchMovies(with: .favoriteMovies(accountId: user.id))
-            }
+            await favoriteListViewModel.fetchMovies(with: .favoriteMovies(accountId: user.id))
         }
     }
 }
 
 #Preview {
     FavoriteMoviesView()
+}
+
+struct MovieListView: View {
+    let movies: [Movie]
+    
+    var body: some View {
+        List(movies) { movie in
+            MovieListItem(movie: movie)
+        }
+        .background(Color("Background"))
+        .listStyle(.plain)
+        .navigationBarTitleDisplayMode(.inline)
+    }
 }
