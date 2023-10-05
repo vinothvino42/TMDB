@@ -18,13 +18,7 @@ struct MovieDetailView: View {
     var body: some View {
         ZStack {
             if movieDetailViewModel.isLoading {
-                HStack(spacing: 8) {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                    Text("Loading")
-                }
-                .tint(.black.opacity(0.7))
-                .foregroundStyle(.black.opacity(0.7))
+                ProgressLoader()
             } else {
                 let movie = movieDetailViewModel.movie
                 
@@ -41,7 +35,7 @@ struct MovieDetailView: View {
                         .aspectRatio(16/9, contentMode: .fit)
                         .padding(.bottom, 10)
                         
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 6) {
                             Text(movie?.title ?? "Not Found")
                                 .font(.title)
                                 .fontWeight(.bold)
@@ -66,7 +60,7 @@ struct MovieDetailView: View {
                                     .multilineTextAlignment(.leading)
                                     .lineLimit(5)
                             }
-                            .padding(.vertical, 20)
+                            .padding(.vertical, 12)
                             
                             MovieCastView(casts: movieCastViewModel.casts)
                         }
@@ -74,9 +68,6 @@ struct MovieDetailView: View {
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     .navigationBarTitleDisplayMode(.inline)
-                    .navigationDestination(for: Cast.self) { cast in
-                        CastView(creditId: cast.creditId)
-                    }
                 }
             }
         }

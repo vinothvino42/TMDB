@@ -40,6 +40,9 @@ final class SearchViewModel: ObservableObject {
             .setFailureType(to: MovieError.self)
             .flatMap { query in
                 Future<[Movie], MovieError> { promise in
+                    if query.isEmpty {
+                        return promise(.success([]))
+                    }
                     Task {
                         do {
                             let results: [Movie] = try await self.movieRepository.searchMovies(query: query)
@@ -61,6 +64,5 @@ final class SearchViewModel: ObservableObject {
                 self.movies = movies
             }
             .store(in: &cancellables)
-
     }
 }

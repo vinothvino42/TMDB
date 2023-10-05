@@ -12,7 +12,9 @@ struct MovieListItem: View {
     let movie: Movie
     
     var body: some View {
-        NavigationLink(value: movie) {
+        NavigationLink {
+            MovieDetailView(movieId: movie.id)
+        } label: {
             HStack(alignment: .top, spacing: 20) {
                 LazyImage(url: movie.posterURL) { state in
                     if let image = state.image {

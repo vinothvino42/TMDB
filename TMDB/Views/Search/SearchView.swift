@@ -13,25 +13,26 @@ struct SearchView: View {
     @StateObject private var searchViewModel = Container.shared.searchMovieViewModel()
     
     let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
+        GridItem(.flexible(), spacing: 0),
+        GridItem(.flexible(), spacing: 0),
+        GridItem(.flexible(), spacing: 0)
     ]
     
     var body: some View {
         NavigationStack {
             GeometryReader { proxy in
                 ScrollView {
-                    if searchViewModel.movies.isEmpty {
+                    if searchViewModel.state == .loading {
+                        ProgressLoader()
+                            .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+                    } else if searchViewModel.movies.isEmpty {
                         EmptySearchView(
                             isNotSearched: searchViewModel.movies.isEmpty,
                             searchText: searchViewModel.searchText
                         )
                         .frame(width: proxy.size.width, height: proxy.size.height)
-                    } else if searchViewModel.state == .loading {
-                        MovieListLoaderView()
                     } else {
-                        LazyVGrid(columns: columns, spacing: 4) {
+                        LazyVGrid(columns: columns, spacing: 12) {
                             ForEach(searchViewModel.movies) { movie in
                                 MovieCard(movie: movie)
                             }

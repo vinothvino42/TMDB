@@ -22,18 +22,18 @@ struct HomeView: View {
         NavigationStack {
             List {
                 Group {
-                    MovieListView(title: "Popular", isLoading: popularMoviesViewModel.isLoading, movies: popularMoviesViewModel.movies)
-                    MovieListView(title: "Top Rated", isLoading: topRatedMoviesViewModel.isLoading, movies: topRatedMoviesViewModel.movies)
-                    MovieListView(title: "Upcoming", isLoading: upcomingMoviesViewModel.isLoading, movies: upcomingMoviesViewModel.movies)
-                    MovieListView(title: "Romance", isLoading: romanceMoviesViewModel.isLoading, movies: romanceMoviesViewModel.movies)
-                    MovieListView(title: "Action", isLoading: actionMoviesViewModel.isLoading, movies: actionMoviesViewModel.movies)
-                    MovieListView(title: "Thriller", isLoading: thrillerMoviesViewModel.isLoading, movies: thrillerMoviesViewModel.movies)
+                    MovieHorizontalListView(title: "Popular", isLoading: popularMoviesViewModel.isLoading, movies: popularMoviesViewModel.movies)
+                    MovieHorizontalListView(title: "Top Rated", isLoading: topRatedMoviesViewModel.isLoading, movies: topRatedMoviesViewModel.movies)
+                    MovieHorizontalListView(title: "Upcoming", isLoading: upcomingMoviesViewModel.isLoading, movies: upcomingMoviesViewModel.movies)
+                    MovieHorizontalListView(title: "Romance", isLoading: romanceMoviesViewModel.isLoading, movies: romanceMoviesViewModel.movies)
+                    MovieHorizontalListView(title: "Action", isLoading: actionMoviesViewModel.isLoading, movies: actionMoviesViewModel.movies)
+                    MovieHorizontalListView(title: "Thriller", isLoading: thrillerMoviesViewModel.isLoading, movies: thrillerMoviesViewModel.movies)
                 }
-                .scrollIndicators(.hidden)
                 .listRowBackground(Color("Background"))
                 .listRowSeparator(.hidden)
                 .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
+            .scrollIndicators(.hidden)
             .background(Color("Background"))
             .listStyle(.plain)
             .navigationTitle("Movies")
@@ -41,18 +41,18 @@ struct HomeView: View {
                 MovieDetailView(movieId: movie.id)
             }
         }
-        .onAppear(perform: fetchAllMovieList)
+        .task {
+            await fetchAllMovieList()
+        }
     }
     
-    func fetchAllMovieList() {
-        Task {
-            await popularMoviesViewModel.fetchMovies(with: .popularMovies)
-            await topRatedMoviesViewModel.fetchMovies(with: .topRatedMovies)
-            await upcomingMoviesViewModel.fetchMovies(with: .upcomingMovies)
-            await romanceMoviesViewModel.fetchMovies(with: .romanceMovies)
-            await actionMoviesViewModel.fetchMovies(with: .actionMovies)
-            await thrillerMoviesViewModel.fetchMovies(with: .thrillerMovies)
-        }
+    func fetchAllMovieList() async {
+        await popularMoviesViewModel.fetchMovies(with: .popularMovies)
+        await topRatedMoviesViewModel.fetchMovies(with: .topRatedMovies)
+        await upcomingMoviesViewModel.fetchMovies(with: .upcomingMovies)
+        await romanceMoviesViewModel.fetchMovies(with: .romanceMovies)
+        await actionMoviesViewModel.fetchMovies(with: .actionMovies)
+        await thrillerMoviesViewModel.fetchMovies(with: .thrillerMovies)
     }
 }
 

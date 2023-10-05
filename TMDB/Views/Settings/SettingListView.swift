@@ -23,10 +23,10 @@ struct SettingListView: View {
                             .foregroundStyle(.secondary)
                     }
                     .padding([.vertical, .horizontal], 16)
-                    .contentShape(Rectangle())
                     
                     Divider()
                 }
+                .contentShape(Rectangle())
                 .onTapGesture {
                     onItemTapped(index)
                 }

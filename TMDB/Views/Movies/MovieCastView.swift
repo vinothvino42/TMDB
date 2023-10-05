@@ -13,7 +13,7 @@ struct MovieCastView: View {
     
     var body: some View {
         if casts == nil || casts!.isEmpty {
-            MovieListLoaderView()
+            ProgressLoader()
         } else {
             VStack(alignment: .leading, spacing: 16) {
                 Text("Cast")
@@ -22,7 +22,9 @@ struct MovieCastView: View {
                 ScrollView(.horizontal) {
                     LazyHStack(spacing: 4) {
                         ForEach(casts!, id: \.self) { cast in
-                            NavigationLink(value: cast) {
+                            NavigationLink {
+                                CastView(creditId: cast.creditId)
+                            } label: {
                                 LazyImage(url: cast.profileURL) { state in
                                     if let image = state.image {
                                         image
