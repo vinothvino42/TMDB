@@ -46,6 +46,7 @@ struct SettingsView: View {
                     FooterView()
                 }
             }
+            .scrollIndicators(.hidden)
             .background(Color("Background"))
             .navigationTitle("Settings")
             .navigationDestination(isPresented: $isFavoriteSelected) {
