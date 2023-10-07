@@ -256,6 +256,49 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		D10C97922AD119CE0001C810 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D1014FF52ABEF231001DB3B2 /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		D10C97932AD119E40001C810 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D119505A2ABD415600A4EE80 /* ViewModels */,
+				D1DA72E92AB7F95000A3E9C8 /* Views */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		D10C97942AD119F00001C810 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D1F1C83C2AC5268800895F27 /* Managers */,
+				D1F786672ABA1504001FD890 /* Network */,
+				D10D59972ABA9E8B000BAE6E /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D10C97952AD12DC30001C810 /* Cases */ = {
+			isa = PBXGroup;
+			children = (
+				D10C97962AD12DCA0001C810 /* Domain */,
+			);
+			path = Cases;
+			sourceTree = "<group>";
+		};
+		D10C97962AD12DCA0001C810 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D1CAE0B02ACF04DF00C709AD /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		D10D59942ABA9E08000BAE6E /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,8 +454,8 @@
 		D1CAE0A82ACF04C900C709AD /* TMDBTests */ = {
 			isa = PBXGroup;
 			children = (
+				D10C97952AD12DC30001C810 /* Cases */,
 				D1CAE0B32ACF09BE00C709AD /* Data */,
-				D1CAE0B02ACF04DF00C709AD /* Models */,
 				D1CAE0A92ACF04C900C709AD /* TMDBTests.swift */,
 			);
 			path = TMDBTests;
@@ -463,12 +506,9 @@
 			children = (
 				D10222DF2ABBE3D40096C023 /* App */,
 				D10222E32ABBE9170096C023 /* Core */,
-				D1F1C83C2AC5268800895F27 /* Managers */,
-				D1F786672ABA1504001FD890 /* Network */,
-				D1014FF52ABEF231001DB3B2 /* Models */,
-				D1DA72E92AB7F95000A3E9C8 /* Views */,
-				D119505A2ABD415600A4EE80 /* ViewModels */,
-				D10D59972ABA9E8B000BAE6E /* Repositories */,
+				D10C97922AD119CE0001C810 /* Domain */,
+				D10C97942AD119F00001C810 /* Data */,
+				D10C97932AD119E40001C810 /* Presentation */,
 				D14155ED2ABCB6B600A12BDE /* Resources */,
 				D1DA72E12AB7F64300A3E9C8 /* Preview Content */,
 			);

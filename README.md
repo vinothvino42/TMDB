@@ -25,8 +25,8 @@ A Movie app written using SwiftUI and TMDB API to demonstrate the MVVM + Reposit
 7. ```Factory``` for Dependency Injection
 8. WIP: Add to Watchlist & Favorites
 
-### Tests
-- Unit Testing - Added test cases for Models
+### Tests (WIP)
+- Unit Testing
 - UI Testing
 
 ## Author
