@@ -9,14 +9,16 @@ import XCTest
 @testable import TMDB
 
 final class PersonTests: XCTestCase {
-    func testPersonResponse() throws {
-        // Arrange & Act
-        guard let path = Bundle(for: PersonTests.self).path(forResource: "person", ofType: "json") else { fatalError("Can't find the person.json file") }
+    var person: Person!
+    
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        person = try DataLoader().loadFile(withFileName: "person")
+    }
+    
+    func testModel_createsPerson() throws {
+        XCTAssertNotNil(person, "The person should not be nil")
         
-        let data = try Data(contentsOf: URL(filePath: path))
-        let person: Person = try DataParser().parse(data: data)
-        
-        // Assert
         XCTAssertEqual(person.id, 1767250)
         XCTAssertEqual(person.name, "Ariana Greenblatt")
         XCTAssertEqual(person.knownForDepartment, "Acting")
@@ -26,5 +28,10 @@ final class PersonTests: XCTestCase {
         XCTAssertEqual(person.genderText, "Female")
         
         XCTAssertNotNil(person.profileURL)
+    }
+    
+    override func tearDownWithError() throws {
+        person = nil
+        try super.tearDownWithError()
     }
 }

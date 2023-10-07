@@ -9,14 +9,17 @@ import XCTest
 @testable import TMDB
 
 final class CastTests: XCTestCase {
-    func testCastResponse() throws {
-        // Arrange & Act
-        guard let path = Bundle(for: CastTests.self).path(forResource: "cast", ofType: "json") else { fatalError("Can't find the cast.json file") }
+    var cast: Cast!
+    
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        cast = try DataLoader().loadFile(withFileName: "cast")
+    }
+    
+    func testModel_createsCast() {
+        XCTAssertNotNil(cast, "The cast should not be nil")
         
-        let data = try Data(contentsOf: URL(filePath: path))
-        let cast: Cast = try DataParser().parse(data: data)
-        
-        // Assert
+        XCTAssertEqual(cast.id, 82732)
         XCTAssertEqual(cast.id, 82732)
         XCTAssertEqual(cast.creditId, "5ffad8a5fcec2e003f1854d6")
         XCTAssertEqual(cast.name, "Mohanlal")
@@ -25,5 +28,10 @@ final class CastTests: XCTestCase {
         XCTAssertEqual(cast.id, 82732)
         
         XCTAssertNotNil(cast.profileURL)
+    }
+    
+    override func tearDownWithError() throws {
+        cast = nil
+        try super.tearDownWithError()
     }
 }
