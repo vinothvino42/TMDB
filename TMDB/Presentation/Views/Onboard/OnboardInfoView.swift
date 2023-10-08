@@ -24,6 +24,7 @@ struct OnboardInfoView: View {
                 .bold()
                 .padding(.horizontal, 30)
                 .multilineTextAlignment(.center)
+                .accessibilityIdentifier("WelcomeMessage")
             
             if showBtn {
                 Button(action: session.completeOnboarding) {
@@ -32,6 +33,7 @@ struct OnboardInfoView: View {
                         .padding(.horizontal, 20)
                 }
                 .buttonStyle(.borderedProminent)
+                .accessibilityIdentifier("ContinueButton")
             }
         }
         .onAppear {
