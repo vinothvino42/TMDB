@@ -33,6 +33,7 @@ struct LoginView: View {
                     HStack(spacing: 20) {
                         Image(systemName: "person.fill")
                         TextField("Username", text: $username)
+                            .accessibilityIdentifier("UsernameField")
                             .focused($focusField, equals: .username)
                             .submitLabel(.next)
                             .onSubmit {
@@ -44,6 +45,7 @@ struct LoginView: View {
                     HStack(spacing: 20) {
                         Image(systemName: "lock.fill")
                         SecureField("Password", text: $password)
+                            .accessibilityIdentifier("PasswordField")
                             .focused($focusField, equals: .password)
                             .submitLabel(.done)
                             .onSubmit {

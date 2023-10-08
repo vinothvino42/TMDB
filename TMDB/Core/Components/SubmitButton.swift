@@ -23,6 +23,7 @@ struct SubmitButton: View {
     var body: some View {
         if isLoading {
             ProgressView("Loading")
+                .accessibilityIdentifier("SubmitProgressIndicator")
                 .progressViewStyle(.horizontal)
                 .frame(maxWidth: .infinity, minHeight: 45)
                 .background(
@@ -41,6 +42,7 @@ struct SubmitButton: View {
                     )
                     .font(.title3)
             }
+            .accessibilityIdentifier("SubmitButton")
         }
     }
 }
