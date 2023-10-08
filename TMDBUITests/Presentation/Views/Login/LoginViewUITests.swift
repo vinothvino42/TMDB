@@ -15,7 +15,32 @@ final class LoginViewUITests: XCTestCase {
         app.launch()
     }
     
-    func test_LoginView_signInButton_shouldDisplayProgressIndicator() {
+    func test_loginView_signInButton_shouldDisplayProgressIndicator() {
+        // Given
+        let usernameField = app.textFields["UsernameField"]
+        let passwordField = app.secureTextFields["PasswordField"]
+
+        // When
+        usernameField.tap()
+        usernameField.typeText("Test Progress Indicator")
+        passwordField.tap()
+        passwordField.typeText("Test Progress Indicator")
+
+        let doneButton = app.buttons["done"]
+        doneButton.tap()
+
+        let signInButton = app.buttons["SubmitButton"]
+        signInButton.tap()
+        
+        let progressIndicator = app.activityIndicators["SubmitProgressIndicator"]
+        let loadingText = app.staticTexts["Loading"]
+        
+        // Then
+        XCTAssertTrue(progressIndicator.exists)
+        XCTAssertTrue(loadingText.exists)
+    }
+    
+    func test_loginView_signInButton_shouldNotSignIn() {
         // Given
         let usernameField = app.textFields["UsernameField"]
         let passwordField = app.secureTextFields["PasswordField"]
@@ -33,14 +58,18 @@ final class LoginViewUITests: XCTestCase {
         signInButton.tap()
         
         let progressIndicator = app.activityIndicators["SubmitProgressIndicator"]
-        let loadingText = app.staticTexts["Loading"]
+        XCTAssertTrue(progressIndicator.exists)
+        
+        let moviesTitle = app.navigationBars["Movies"]
+        let isExists = moviesTitle.waitForExistence(timeout: 8)
+        let errorAlert = app.alerts["Error"]
         
         // Then
-        XCTAssertTrue(progressIndicator.exists)
-        XCTAssertTrue(loadingText.exists)
+        XCTAssertTrue(errorAlert.exists)
+        XCTAssertFalse(isExists)
     }
-
-    func test_LoginView_signInButton_shouldSignIn() {
+    
+    func test_loginView_signInButton_shouldSignIn() {
         // Given
         let usernameField = app.textFields["UsernameField"]
         let passwordField = app.secureTextFields["PasswordField"]
@@ -65,35 +94,6 @@ final class LoginViewUITests: XCTestCase {
         let moviesTitle = app.navigationBars["Movies"]
         let isExists = moviesTitle.waitForExistence(timeout: 8)
         XCTAssertTrue(isExists)
-    }
-    
-    func test_LoginView_signInButton_shouldNotSignIn() {
-        // Given
-        let usernameField = app.textFields["UsernameField"]
-        let passwordField = app.secureTextFields["PasswordField"]
-
-        // When
-        usernameField.tap()
-        usernameField.typeText("vinothvino42")
-        passwordField.tap()
-        passwordField.typeText("InvalidPassword")
-
-        let doneButton = app.buttons["done"]
-        doneButton.tap()
-
-        let signInButton = app.buttons["SubmitButton"]
-        signInButton.tap()
-        
-        let progressIndicator = app.activityIndicators["SubmitProgressIndicator"]
-        XCTAssertTrue(progressIndicator.exists)
-        
-        let moviesTitle = app.navigationBars["Movies"]
-        let isExists = moviesTitle.waitForExistence(timeout: 8)
-        let errorAlert = app.alerts["Error"]
-        
-        // Then
-        XCTAssertTrue(errorAlert.exists)
-        XCTAssertFalse(moviesTitle.exists)
     }
     
     override func tearDownWithError() throws {

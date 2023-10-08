@@ -21,6 +21,7 @@
 		D119505C2ABD416A00A4EE80 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D119505B2ABD416A00A4EE80 /* LoginViewModel.swift */; };
 		D119505E2ABD418C00A4EE80 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D119505D2ABD418C00A4EE80 /* AuthRepository.swift */; };
 		D134F8422AD14104004289CB /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134F8412AD14104004289CB /* DataLoader.swift */; };
+		D134F84A2AD14E03004289CB /* LoginViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D134F8492AD14E03004289CB /* LoginViewUITests.swift */; };
 		D13A7F132ACF2CBC0086AFEA /* movie.json in Resources */ = {isa = PBXBuildFile; fileRef = D13A7F122ACF2CBC0086AFEA /* movie.json */; };
 		D13A7F152ACF2CE00086AFEA /* cast.json in Resources */ = {isa = PBXBuildFile; fileRef = D13A7F142ACF2CE00086AFEA /* cast.json */; };
 		D13A7F172ACF2CEF0086AFEA /* person.json in Resources */ = {isa = PBXBuildFile; fileRef = D13A7F162ACF2CEF0086AFEA /* person.json */; };
@@ -72,6 +73,7 @@
 		D1E460072ACB0AB3008F8F00 /* MovieCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E460062ACB0AB3008F8F00 /* MovieCard.swift */; };
 		D1E460092ACB0B5A008F8F00 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E460082ACB0B5A008F8F00 /* RatingView.swift */; };
 		D1E4600B2ACB0CB3008F8F00 /* EmptySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E4600A2ACB0CB3008F8F00 /* EmptySearchView.swift */; };
+		D1E96E3E2AD2B86600050E89 /* OnboardViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E96E3D2AD2B86600050E89 /* OnboardViewUITests.swift */; };
 		D1F1C83E2AC5269900895F27 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1C83D2AC5269900895F27 /* SessionManager.swift */; };
 		D1F1C8432AC5412000895F27 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1C8422AC5412000895F27 /* RootView.swift */; };
 		D1F1C8462AC5487700895F27 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F1C8452AC5487700895F27 /* OnboardView.swift */; };
@@ -87,6 +89,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D134F84D2AD14E03004289CB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1DA72D02AB7F64200A3E9C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1DA72D72AB7F64200A3E9C8;
+			remoteInfo = TMDB;
+		};
 		D1CAE0AB2ACF04C900C709AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D1DA72D02AB7F64200A3E9C8 /* Project object */;
@@ -111,6 +120,8 @@
 		D119505B2ABD416A00A4EE80 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D119505D2ABD418C00A4EE80 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		D134F8412AD14104004289CB /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		D134F8472AD14E03004289CB /* TMDBUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMDBUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D134F8492AD14E03004289CB /* LoginViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewUITests.swift; sourceTree = "<group>"; };
 		D13A7F122ACF2CBC0086AFEA /* movie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movie.json; sourceTree = "<group>"; };
 		D13A7F142ACF2CE00086AFEA /* cast.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cast.json; sourceTree = "<group>"; };
 		D13A7F162ACF2CEF0086AFEA /* person.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = person.json; sourceTree = "<group>"; };
@@ -161,6 +172,7 @@
 		D1E460062ACB0AB3008F8F00 /* MovieCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCard.swift; sourceTree = "<group>"; };
 		D1E460082ACB0B5A008F8F00 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		D1E4600A2ACB0CB3008F8F00 /* EmptySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchView.swift; sourceTree = "<group>"; };
+		D1E96E3D2AD2B86600050E89 /* OnboardViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewUITests.swift; sourceTree = "<group>"; };
 		D1F1C83D2AC5269900895F27 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		D1F1C8422AC5412000895F27 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		D1F1C8452AC5487700895F27 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
@@ -176,6 +188,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D134F8442AD14E03004289CB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D1CAE0A42ACF04C900C709AD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -339,6 +358,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		D134F8482AD14E03004289CB /* TMDBUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D1E96E3B2AD2B83900050E89 /* Presentation */,
+			);
+			path = TMDBUITests;
+			sourceTree = "<group>";
+		};
 		D14155ED2ABCB6B600A12BDE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,6 +526,7 @@
 			children = (
 				D1DA72DA2AB7F64200A3E9C8 /* TMDB */,
 				D1CAE0A82ACF04C900C709AD /* TMDBTests */,
+				D134F8482AD14E03004289CB /* TMDBUITests */,
 				D1DA72D92AB7F64200A3E9C8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -508,6 +536,7 @@
 			children = (
 				D1DA72D82AB7F64200A3E9C8 /* TMDB.app */,
 				D1CAE0A72ACF04C900C709AD /* TMDBTests.xctest */,
+				D134F8472AD14E03004289CB /* TMDBUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -566,6 +595,39 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		D1E96E3B2AD2B83900050E89 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D1E96E3C2AD2B84100050E89 /* Views */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		D1E96E3C2AD2B84100050E89 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D1E96E402AD2B87B00050E89 /* Onboard */,
+				D1E96E3F2AD2B86C00050E89 /* Login */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D1E96E3F2AD2B86C00050E89 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D134F8492AD14E03004289CB /* LoginViewUITests.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		D1E96E402AD2B87B00050E89 /* Onboard */ = {
+			isa = PBXGroup;
+			children = (
+				D1E96E3D2AD2B86600050E89 /* OnboardViewUITests.swift */,
+			);
+			path = Onboard;
+			sourceTree = "<group>";
+		};
 		D1F1C83C2AC5268800895F27 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +679,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D134F8462AD14E03004289CB /* TMDBUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D134F84F2AD14E03004289CB /* Build configuration list for PBXNativeTarget "TMDBUITests" */;
+			buildPhases = (
+				D134F8432AD14E03004289CB /* Sources */,
+				D134F8442AD14E03004289CB /* Frameworks */,
+				D134F8452AD14E03004289CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D134F84E2AD14E03004289CB /* PBXTargetDependency */,
+			);
+			name = TMDBUITests;
+			productName = TMDBUITests;
+			productReference = D134F8472AD14E03004289CB /* TMDBUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		D1CAE0A62ACF04C900C709AD /* TMDBTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D1CAE0AF2ACF04C900C709AD /* Build configuration list for PBXNativeTarget "TMDBTests" */;
@@ -667,6 +747,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					D134F8462AD14E03004289CB = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = D1DA72D72AB7F64200A3E9C8;
+					};
 					D1CAE0A62ACF04C900C709AD = {
 						CreatedOnToolsVersion = 15.0;
 						TestTargetID = D1DA72D72AB7F64200A3E9C8;
@@ -695,11 +779,19 @@
 			targets = (
 				D1DA72D72AB7F64200A3E9C8 /* TMDB */,
 				D1CAE0A62ACF04C900C709AD /* TMDBTests */,
+				D134F8462AD14E03004289CB /* TMDBUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D134F8452AD14E03004289CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D1CAE0A52ACF04C900C709AD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -723,6 +815,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D134F8432AD14E03004289CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1E96E3E2AD2B86600050E89 /* OnboardViewUITests.swift in Sources */,
+				D134F84A2AD14E03004289CB /* LoginViewUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D1CAE0A32ACF04C900C709AD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -808,6 +909,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D134F84E2AD14E03004289CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1DA72D72AB7F64200A3E9C8 /* TMDB */;
+			targetProxy = D134F84D2AD14E03004289CB /* PBXContainerItemProxy */;
+		};
 		D1CAE0AC2ACF04C900C709AD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D1DA72D72AB7F64200A3E9C8 /* TMDB */;
@@ -816,6 +922,49 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		D134F8502AD14E03004289CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HW2VJEFH2M;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vinothvino.TMDBUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TMDB;
+			};
+			name = Debug;
+		};
+		D134F8512AD14E03004289CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HW2VJEFH2M;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vinothvino.TMDBUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TMDB;
+			};
+			name = Release;
+		};
 		D1CAE0AD2ACF04C900C709AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1040,6 +1189,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D134F84F2AD14E03004289CB /* Build configuration list for PBXNativeTarget "TMDBUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D134F8502AD14E03004289CB /* Debug */,
+				D134F8512AD14E03004289CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D1CAE0AF2ACF04C900C709AD /* Build configuration list for PBXNativeTarget "TMDBTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
